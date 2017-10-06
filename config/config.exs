@@ -28,3 +28,7 @@ use Mix.Config
 # here (which is why it is important to import them last).
 #
 #     import_config "#{Mix.env}.exs"
+
+config :elixir_auth_github,
+  client_id: "ef6730c4c96c4eb6f818",
+  client_secret: "792c4ffd43db87a650d156400d8a207934ca64d5"
