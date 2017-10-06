@@ -5,6 +5,7 @@ defmodule ElixirAuthGithub do
 
   @client_id Application.get_env(:elixir_auth_github, :client_id)
   @client_secret Application.get_env(:elixir_auth_github, :client_secret)
+  @github_auth_url "https://github.com/login/oauth/access_token?"
 
   def login_url do
     case @client_id do
@@ -25,25 +26,26 @@ defmodule ElixirAuthGithub do
   end
 
   def github_auth(code) do
-    url = "https://github.com/login/oauth/access_token?"
-    queryParams =
-      URI.encode_query(%{"client_id" => @client_id,
-                         "client_secret" => @client_secret,
-                         "code" => code})
-
-    %{body: accessQuery} =
-      HTTPoison.post!(url <> queryParams, "")
-
-    %{"access_token" => access_token} =
-      URI.decode_query(accessQuery)
+    %{"client_id" => @client_id,
+      "client_secret" => @client_secret,
+      "code" => code}
+    |> URI.encode_query
+    |> (&(HTTPoison.post!(@github_auth_url <> &1, ""))).()
+    |> Map.get(:body)
+    |> URI.decode_query
+    |> get_user_details
+    |> Map.get(:body)
+    |> Poison.decode!
   end
 
-  def get_user_details(access_token) do
+
+
+  def get_user_details(%{"access_token" => access_token}) do
     HTTPoison.get!("https://api.github.com/user", [
       {"User-Agent", "elixir-practice"},
       {"Authorization", "token #{access_token}"}
     ])
-    |> IO.inspect
   end
+
 
 end
