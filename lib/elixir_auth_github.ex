@@ -35,18 +35,16 @@ defmodule ElixirAuthGithub do
     |> Map.get(:body)
     |> URI.decode_query
     |> get_user_details
-    |> Map.get(:body)
-    |> Poison.decode!
   end
-
-
 
   def get_user_details(%{"access_token" => access_token}) do
     @httpoison.get!("https://api.github.com/user", [
       {"User-Agent", "elixir-practice"},
       {"Authorization", "token #{access_token}"}
     ])
+    |> Map.get(:body)
+    |> Poison.decode!
+    |> Map.put("access_token", access_token)
   end
-
 
 end
