@@ -25,7 +25,8 @@ defmodule ElixirAuthGithub.Mixfile do
     [
       {:httpoison, "~> 0.13"},
       {:poison, "~> 3.1"},
-      {:excoveralls, "~> 0.6", only: :test}
+      {:excoveralls, "~> 0.6", only: :test},
+      {:ex_doc, "~> 0.13", only: :dev}
     ]
   end
 end
