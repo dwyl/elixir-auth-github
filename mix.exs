@@ -6,6 +6,8 @@ defmodule ElixirAuthGithub.Mixfile do
       app: :elixir_auth_github,
       version: "0.1.0",
       elixir: "~> 1.4",
+      test_coverage: [tool: ExCoveralls],
+      preferred_cli_env: [coveralls: :test],
       start_permanent: Mix.env == :prod,
       deps: deps()
     ]
@@ -22,7 +24,8 @@ defmodule ElixirAuthGithub.Mixfile do
   defp deps do
     [
       {:httpoison, "~> 0.13"},
-      {:poison, "~> 3.1"}
+      {:poison, "~> 3.1"},
+      {:excoveralls, "~> 0.6", only: :test}
     ]
   end
 end
