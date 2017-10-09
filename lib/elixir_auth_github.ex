@@ -34,17 +34,32 @@ defmodule ElixirAuthGithub do
     |> (&(@httpoison.post!(@github_auth_url <> &1, ""))).()
     |> Map.get(:body)
     |> URI.decode_query
+    |> check_authenticated
+  end
+
+  def check_authenticated(%{"access_token" => access_token}) do
+    access_token
     |> get_user_details
   end
 
-  def get_user_details(%{"access_token" => access_token}) do
+  def check_authenticated(error), do: {:error, error}
+
+
+  def get_user_details(access_token) do
     @httpoison.get!("https://api.github.com/user", [
       {"User-Agent", "elixir-practice"},
       {"Authorization", "token #{access_token}"}
     ])
     |> Map.get(:body)
     |> Poison.decode!
-    |> Map.put("access_token", access_token)
+    |> set_user_details(access_token)
   end
 
+  def set_user_details(%{"login" => name} = user, access_token) do
+    user = Map.put(user, "access_token", access_token)
+
+    {:ok, user}
+  end
+
+  def set_user_details(error), do: {:error, error}
 end

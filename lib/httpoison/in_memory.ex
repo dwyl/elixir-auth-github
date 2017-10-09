@@ -1,6 +1,4 @@
 defmodule ElixirAuthGithub.HTTPoison.InMemory do
-  import HTTPoison
-
   def get!(_url, _headers \\ [], _options \\ []) do
     %{body: "{\"key\": \"value\"}"}
   end
