@@ -9,7 +9,9 @@ defmodule ElixirAuthGithub.Mixfile do
       test_coverage: [tool: ExCoveralls],
       preferred_cli_env: [coveralls: :test],
       start_permanent: Mix.env == :prod,
-      deps: deps()
+      deps: deps(),
+      name: "ElixirAuthGithub",
+      source_url: "https://www.github.com/dwyl/elixir-auth-github"
     ]
   end
 
@@ -27,6 +29,14 @@ defmodule ElixirAuthGithub.Mixfile do
       {:poison, "~> 3.1"},
       {:excoveralls, "~> 0.6", only: :test},
       {:ex_doc, "~> 0.13", only: :dev}
+    ]
+  end
+
+  defp package() do
+    [
+      files: ["lib", "mix.exs", "README.md",, "LICENSE*"],
+      links: %{"GitHub" => "https://github.com/dwyl/elixir-auth-github"},
+      licenses: ["GNU GPL v2.0"]
     ]
   end
 end
