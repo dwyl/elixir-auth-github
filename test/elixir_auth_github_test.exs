@@ -45,4 +45,19 @@ defmodule ElixirAuthGithubTest do
 
     assert ElixirAuthGithub.github_auth("123") == {:error, %{"error" => "test error"}}
   end
+
+  test "Test github auth with state" do
+    Application.put_env :elixir_auth_github, :client_id, "TEST_ID"
+    Application.put_env :elixir_auth_github, :client_secret, "TEST_SECRET"
+
+    assert ElixirAuthGithub.github_auth("12345", "hello") == {:ok, %{"access_token" => "12345", "login" => "test_user", "state" => "hello"}}
+  end
+
+  test "test github auth failure with state" do
+    Application.put_env :elixir_auth_github, :client_id, "TEST_ID"
+    Application.put_env :elixir_auth_github, :client_secret, "TEST_SECRET"
+
+    assert ElixirAuthGithub.github_auth("1234", "hello") == {:error, %{"error" => "error"}}
+  end
+
 end
