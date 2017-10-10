@@ -4,6 +4,16 @@ defmodule ElixirAuthGithub do
 
   We created it because everyone at dwyl uses github (including our clients!) so github OAuth makes sense for our internal (and external) tools. As a result, there's no use reinventing the wheel every project, and by making it into a module we can help other people as well!
 
+  First, add `:elixir_auth_github` to your deps in your mix.exs, then run `mix deps.get` in your terminal.
+  
+  ```elixir
+  def deps do
+    [
+      {:elixir_auth_github, "~> 0.1.0"}
+    ]
+  end
+  ```
+
   In order to set up Github OAuth in your app, you will first need to create an
   OAuth app on github, in here you'll give a callback URL. This will be a URL
   which github will redirect back to with a code for you to use to get a user's
