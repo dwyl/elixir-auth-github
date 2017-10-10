@@ -11,7 +11,9 @@ defmodule ElixirAuthGithub.Mixfile do
       start_permanent: Mix.env == :prod,
       deps: deps(),
       name: "ElixirAuthGithub",
-      source_url: "https://www.github.com/dwyl/elixir-auth-github"
+      source_url: "https://www.github.com/dwyl/elixir-auth-github",
+      description: description(),
+      package: package()
     ]
   end
 
@@ -38,9 +40,10 @@ defmodule ElixirAuthGithub.Mixfile do
 
   defp package() do
     [
-      files: ["lib", "mix.exs", "README.md",, "LICENSE*"],
+      files: ["lib", "mix.exs", "README.md", "LICENSE*"],
       links: %{"GitHub" => "https://github.com/dwyl/elixir-auth-github"},
-      licenses: ["GNU GPL v2.0"]
+      licenses: ["GNU GPL v2.0"],
+      maintainers: ["Zooey Miller", "Finn Hodgkin"]
     ]
   end
 end
