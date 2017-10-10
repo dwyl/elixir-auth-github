@@ -2,15 +2,14 @@ defmodule ElixirAuthGithub do
   @moduledoc """
   ElixirAuthGithub is a module to help you with Github OAuth in Elixir and Phoenix.
 
-  We created it because we everyone at dwyl uses github (including our clients!) so github oauth makes sense for our internal (and external) tools. As a result, there's no use reinventing the wheel every project, and by making it into a module we can help other people as well!
-
+  We created it because everyone at dwyl uses github (including our clients!) so github OAuth makes sense for our internal (and external) tools. As a result, there's no use reinventing the wheel every project, and by making it into a module we can help other people as well!
 
   In order to set up Github OAuth in your app, you will first need to create an
   OAuth app on github, in here you'll give a callback URL. This will be a URL
   which github will redirect back to with a code for you to use to get a user's
   data from github. Something like `https://www.my-awesome-app.com/auth/gh-callback/`. The querystring with the code will be added to the end.
 
-  Once you've set up your oauth app on github can set up the variables in your config.exs.
+  Once you've set up your OAuth app on github can set up the variables in your config.exs.
 
   ```elixir
   config :elixir_auth_github,
