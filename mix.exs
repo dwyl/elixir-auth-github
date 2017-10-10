@@ -32,6 +32,10 @@ defmodule ElixirAuthGithub.Mixfile do
     ]
   end
 
+  defp description() do
+   "A module to help simplify github oauth in elixir/phoenix."
+ end
+
   defp package() do
     [
       files: ["lib", "mix.exs", "README.md",, "LICENSE*"],
