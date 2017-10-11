@@ -5,11 +5,11 @@ defmodule ElixirAuthGithub do
   We created it because everyone at dwyl uses github (including our clients!) so github OAuth makes sense for our internal (and external) tools. As a result, there's no use reinventing the wheel every project, and by making it into a module we can help other people as well!
 
   First, add `:elixir_auth_github` to your deps in your mix.exs, then run `mix deps.get` in your terminal.
-  
+
   ```elixir
   def deps do
     [
-      {:elixir_auth_github, "~> 0.1.0"}
+      {:elixir_auth_github, "~> 0.1.3"}
     ]
   end
   ```
@@ -39,7 +39,7 @@ defmodule ElixirAuthGithub do
   """
 
   @github_auth_url "https://github.com/login/oauth/access_token?"
-  @httpoison Application.get_env(:elixir_auth_github, :httpoison)
+  @httpoison Application.get_env(:elixir_auth_github, :httpoison) || HTTPoison
 
   @doc """
   Returns a String URL to be used as the initial OAuth redirect.
