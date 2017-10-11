@@ -1,5 +1,8 @@
 # ElixirAuthGithub
 
+[![Build Status](https://travis-ci.org/dwyl/elixir-auth-github.svg?branch=master)](https://travis-ci.org/dwyl/elixir-auth-github)
+[![codecov](https://codecov.io/gh/dwyl/elixir-auth-github/branch/master/graph/badge.svg)](https://codecov.io/gh/dwyl/elixir-auth-github)
+
 ElixirAuthGithub is a module to help you with Github OAuth in Elixir and Phoenix.
 
 [Check it out on hex.pm](https://hex.pm/packages/elixir_auth_github/0.1.0)
