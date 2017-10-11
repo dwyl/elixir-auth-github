@@ -1,0 +1,32 @@
+{
+  "name": "phoenix-auth-github",
+  "version": "1.0.0",
+  "description": "[![Build Status](https://travis-ci.org/dwyl/elixir-auth-github.svg?branch=master)](https://travis-ci.org/dwyl/elixir-auth-github) [![codecov](https://codecov.io/gh/dwyl/elixir-auth-github/branch/master/graph/badge.svg)](https://codecov.io/gh/dwyl/elixir-auth-github)",
+  "main": "index.js",
+  "directories": {
+    "doc": "doc",
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mix test",
+    "coverage": "mix coveralls"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/finnhodgkin/phoenix-auth-github.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/finnhodgkin/phoenix-auth-github/issues"
+  },
+  "homepage": "https://github.com/finnhodgkin/phoenix-auth-github#readme",
+  "devDependencies": {
+    "pre-commit": "^1.2.2"
+  },
+  "pre-commit": [
+    "coverage",
+    "test"
+  ]
+}
