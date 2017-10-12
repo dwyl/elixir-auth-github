@@ -29,4 +29,4 @@ use Mix.Config
 #
 import_config "#{Mix.env}.exs"
 
-config :pre_commit, commands: ["test"]
+config :pre_commit, commands: ["test", "coveralls"]
