@@ -14,7 +14,7 @@ First, add `:elixir_auth_github` to your deps in your mix.exs, then run `mix dep
 ```elixir
 def deps do
   [
-    {:elixir_auth_github, "~> 0.1.3"}
+    {:elixir_auth_github, "~> 0.1.4"}
   ]
 end
 ```

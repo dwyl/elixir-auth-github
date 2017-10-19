@@ -4,9 +4,6 @@ defmodule ElixirAuthGithub.HTTPoison.InMemory do
     code in ElixirAuthGithub. These are just functions that pattern match on the entries and return things in the way we expect, so that we can check the pipeline in ElixirAuthGithub.github_auth
   """
 
-  #hello world
-  #hello again
-
   def get!(url, headers \\ [], options \\ [])
   def get!("https://api.github.com/user", [
     {"User-Agent", "elixir-practice"},
