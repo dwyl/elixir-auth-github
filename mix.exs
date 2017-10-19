@@ -4,7 +4,7 @@ defmodule ElixirAuthGithub.Mixfile do
   def project do
     [
       app: :elixir_auth_github,
-      version: "0.1.3",
+      version: "0.1.4",
       elixir: "~> 1.4",
       test_coverage: [tool: ExCoveralls],
       preferred_cli_env: ["coveralls": :test, "coveralls.detail": :test,
@@ -31,7 +31,8 @@ defmodule ElixirAuthGithub.Mixfile do
       {:httpoison, "~> 0.13"},
       {:poison, "~> 3.1"},
       {:excoveralls, "~> 0.6", only: :test},
-      {:ex_doc, "~> 0.13", only: :dev}
+      {:ex_doc, "~> 0.13", only: :dev},
+      {:pre_commit, "~> 0.1.3", only: :dev}
     ]
   end
 
