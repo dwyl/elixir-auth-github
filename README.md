@@ -1,4 +1,9 @@
-# ElixirAuthGithub
+<div align="center">
+
+# `elixir-auth-github`
+
+The _easiest_ way to add GitHub OAuth authentication
+to your Elixir/Phoenix Apps.
 
 ![Build Status](https://img.shields.io/travis/com/dwyl/elixir-auth-github/master?color=bright-green&style=flat-square)
 [![codecov.io](https://img.shields.io/codecov/c/github/dwyl/elixir-auth-github/master.svg?style=flat-square)](http://codecov.io/github/dwyl/elixir-auth-github?branch=master)
@@ -8,9 +13,8 @@
 [![HitCount](http://hits.dwyl.io/dwyl/elixir-auth-github.svg)](http://hits.dwyl.io/dwyl/elixir-auth-github)
 -->
 
-ElixirAuthGithub is a module to help you with Github OAuth in Elixir and Phoenix.
+</div>
 
-[Check it out on hex.pm](https://hex.pm/packages/elixir_auth_github/0.1.0)
 
 We created it because everyone at dwyl uses github (including our clients!) so github OAuth makes sense for our internal (and external) tools. As a result, there's no use reinventing the wheel every project, and by making it into a module we can help other people as well!
 
