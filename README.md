@@ -1,7 +1,12 @@
 # ElixirAuthGithub
 
-[![Build Status](https://travis-ci.org/dwyl/elixir-auth-github.svg?branch=master)](https://travis-ci.org/dwyl/elixir-auth-github)
-[![codecov](https://codecov.io/gh/dwyl/elixir-auth-github/branch/master/graph/badge.svg)](https://codecov.io/gh/dwyl/elixir-auth-github)
+![Build Status](https://img.shields.io/travis/com/dwyl/elixir-auth-github/master?color=bright-green&style=flat-square)
+[![codecov.io](https://img.shields.io/codecov/c/github/dwyl/elixir-auth-github/master.svg?style=flat-square)](http://codecov.io/github/dwyl/elixir-auth-github?branch=master)
+![Hex.pm](https://img.shields.io/hexpm/v/elixir_auth_google?color=brightgreen&style=flat-square)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat-square)](https://github.com/dwyl/elixir-auth-github/issues)
+<!--
+[![HitCount](http://hits.dwyl.io/dwyl/elixir-auth-github.svg)](http://hits.dwyl.io/dwyl/elixir-auth-github)
+-->
 
 ElixirAuthGithub is a module to help you with Github OAuth in Elixir and Phoenix.
 
@@ -14,7 +19,7 @@ First, add `:elixir_auth_github` to your deps in your mix.exs, then run `mix dep
 ```elixir
 def deps do
   [
-    {:elixir_auth_github, "~> 0.1.4"}
+    {:elixir_auth_github, "~> 1.0.0"}
   ]
 end
 ```
