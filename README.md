@@ -23,9 +23,23 @@ and **_extensively_ documented** way
 to add "_**Sign-in** with **GitHub**_"
 capability to our Elixir App(s). <br />
 
+> We created this package
+because everyone [@dwyl](https://github.com/dwyl)
+uses GitHub so using GitHub OAuth makes sense
+for our internal (and external) tools.
+As a result, there's no use reinventing the wheel every project,
+and by making it into a well-documented and tested
+reusable module other people can benefit from it.
+
 # _What_? 💭
 
-We created it because everyone at dwyl uses github (including our clients!) so github OAuth makes sense for our internal (and external) tools. As a result, there's no use reinventing the wheel every project, and by making it into a module we can help other people as well!
+
+An Elixir package that seamlessly handles
+GitHub OAuth Authentication/Authorization
+in as few steps as possible. <br />
+Following best practices for security & privacy
+and avoiding complexity
+by having sensible defaults for all settings.
 
 
 # _Who_? 👥
@@ -43,6 +57,8 @@ and you'll be up-and running in 5 minutes.
 
 # _How_? 💻
 
+Add GitHub Auth to your Elixir/Phoenix project
+by following these 5 simple steps:
 
 
 ## 1. Add the hex package to `deps` 📦
@@ -72,26 +88,28 @@ generate the OAuth2 Credentials for the application
 and save the credentials as environment variables
 accessible by your app.
 
-> **Note**: There are a few steps for creating a set of Google APIs credentials,
-so if you don't already have a Google App,
+> **Note**: There are a few steps
+for creating a set of GitHub APIs credentials,
+so if you don't already have a GitHub App,
 we created the following step-by-step guide
 to make it quick and _relatively_ painless:
 [create-github-app-guide.md](https://github.com/dwyl/elixir-auth-github/blob/master/create-github-app-guide.md) <br />
 Don't be intimidated by all the buzz-words;
 it's quite straightforward.
-And if you get stuck, ask for
-[help!](https://github.com/dwyl/elixir-auth-github/issues)
+And if you get stuck,
+[ask for help!](https://github.com/dwyl/elixir-auth-github/issues)
 
 
 By the end of this step
 you should have these two environment variables set:
 
 ```yml
-GITHUB_CLIENT_ID=631770888008-6n0oruvsm16kbkqg6u76p5cv5kfkcekt
-GITHUB_CLIENT_SECRET=MHxv6-RGF5nheXnxh1b0LNDq
+GITHUB_CLIENT_ID=d6fca75c63daa014c187
+GITHUB_CLIENT_SECRET=8eeb143935d1a505692aaef856db9b4da8245f3c
 ```
 
-> ⚠️ Don't worry, these keys aren't valid.
+> ⚠️ Don't worry, these keys aren't valid
+(_they were revoked **`before`** we published this guide_).
 They are just here for illustration purposes.
 
 
@@ -126,6 +144,6 @@ And there you have it! You still have to do a bit of set up, but we do the busin
 ## Useful Links and Further Reading
 
 
-+ GitHub Logos and Usage: https://github.com/logos
-(_tldr: no official auth buttons but it's encouraged to use the logo
++ GitHub Logos and Usage: https://github.com/logos <br />
+(_tldr: no official auth buttons but use of octocat logo is encouraged
 to help users identify that your App has a GitHub integration_)
