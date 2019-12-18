@@ -113,6 +113,7 @@ GITHUB_CLIENT_SECRET=8eeb143935d1a505692aaef856db9b4da8245f3c
 They are just here for illustration purposes.
 
 
+> Pickup: https://github.com/settings/applications/1190344
 
 
 
@@ -143,7 +144,12 @@ And there you have it! You still have to do a bit of set up, but we do the busin
 
 ## Useful Links and Further Reading
 
-
++ GitHub Apps docs:
+https://developer.github.com/apps/building-github-apps/creating-a-github-app
++ Authorizing OAuth Apps:
+https://developer.github.com/apps/building-oauth-apps/authorizing-oauth-apps
++ Basics of Authentication:
+https://developer.github.com/v3/guides/basics-of-authentication/
 + GitHub Logos and Usage: https://github.com/logos <br />
 (_tldr: no official auth buttons but use of octocat logo is encouraged
 to help users identify that your App has a GitHub integration_)
