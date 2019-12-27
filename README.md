@@ -27,8 +27,7 @@ capability to our Elixir App(s). <br />
 because everyone [@dwyl](https://github.com/dwyl)
 uses GitHub so using GitHub OAuth makes sense
 for our internal (and external) tools.
-As a result, there's no use reinventing the wheel every project,
-and by making it into a well-documented and tested
+By making it into a well-documented and tested
 reusable module other people can benefit from it.
 
 # _What_? 💭
@@ -113,7 +112,20 @@ GITHUB_CLIENT_SECRET=8eeb143935d1a505692aaef856db9b4da8245f3c
 They are just here for illustration purposes.
 
 
-> Pickup: https://github.com/settings/applications/1190344
+> 💡 Tip: We tend to use an
+[`.env`](https://github.com/dwyl/learn-environment-variables#3-use-a-env-file-locally-which-you-can-gitignore)
+file to manage our environment variables on our `localhost`
+and then use whichever system for environment variables appropriate
+for our deployment.
+e.g: [Heroku](https://github.com/dwyl/learn-environment-variables#environment-variables-on-heroku)
+For an example `.env` file with the environment variables
+required by `elixir-auth-github` see:
+[`.env_sample`](https://github.com/dwyl/elixir-auth-github/blob/master/.env_sample)
+
+
+
+
+
 
 
 
