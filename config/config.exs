@@ -29,4 +29,5 @@ use Mix.Config
 #
 import_config "#{Mix.env}.exs"
 
-config :pre_commit, commands: ["test", "coveralls"]
+# See: https://github.com/dwyl/elixir-pre-commit/issues/38
+# config :pre_commit, commands: ["test", "coveralls"], verbose: true

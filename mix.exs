@@ -32,7 +32,7 @@ defmodule ElixirAuthGithub.Mixfile do
       {:poison, "~> 3.1"},
       {:excoveralls, "~> 0.6", only: :test},
       {:ex_doc, "~> 0.13", only: :dev},
-      {:pre_commit, "~> 0.1.3", only: :dev}
+      # {:pre_commit, "~> 0.1.3", only: :dev}
     ]
   end
 
