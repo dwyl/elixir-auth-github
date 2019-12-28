@@ -85,4 +85,4 @@ to reflect the URl where you are deploying your app e.g:
 In our case
 https://elixir-auth-github-demo.herokuapp.com
 and
-https://elixir-auth-github-demo.herokuapp.com/auth/google/callback
+https://elixir-auth-github-demo.herokuapp.com/auth/github/callback
