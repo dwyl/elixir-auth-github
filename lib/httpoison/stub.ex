@@ -1,6 +1,6 @@
 defmodule ElixirAuthGithub.HTTPoison.Stub do
   @moduledoc """
-    This is a set up to mock our API request
+    This is a set up to mock (stub) our API requests to the GitHub API
     so that we can test all of our code in ElixirAuthGithub.
     These are just functions that pattern match on the entries
     and return things in the way we expect,
