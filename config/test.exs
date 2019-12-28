@@ -1,3 +1,4 @@
 use Mix.Config
 
-config :elixir_auth_github, :httpoison, ElixirAuthGithub.HTTPoison.InMemory
+# Stub all requests HTTP requests to GitHub API with known responses:
+config :elixir_auth_github, :httpoison, ElixirAuthGithub.HTTPoison.Stub

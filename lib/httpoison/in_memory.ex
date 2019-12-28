@@ -1,7 +1,10 @@
-defmodule ElixirAuthGithub.HTTPoison.InMemory do
+defmodule ElixirAuthGithub.HTTPoison.Stub do
   @moduledoc """
-    This is a set up to mock our API request so that we can test all of our
-    code in ElixirAuthGithub. These are just functions that pattern match on the entries and return things in the way we expect, so that we can check the pipeline in ElixirAuthGithub.github_auth
+    This is a set up to mock our API request
+    so that we can test all of our code in ElixirAuthGithub.
+    These are just functions that pattern match on the entries
+    and return things in the way we expect,
+    so that we can check the pipeline in ElixirAuthGithub.github_auth
   """
 
   def get!(url, headers \\ [], options \\ [])

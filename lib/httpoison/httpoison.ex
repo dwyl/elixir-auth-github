@@ -1,6 +1,8 @@
 defmodule ElixirAuthGithub.HTTPoison.HTTPoison do
   @moduledoc """
-    Because we are mocking the api requests in ElixirAuthGithub.HTTPoison.InMemory we have to have a separate module to delegate the functions we use to the actual HTTPoison module, so that's all we do here.
+    Because we are mocking API requests in ElixirAuthGithub.HTTPoison.St
+    we have to have a separate module to delegate the functions we use
+    to the actual HTTPoison module, so that's all we do here.
   """
 
   defdelegate get!(url, headers, options \\ []), to: HTTPoison
