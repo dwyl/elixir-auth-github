@@ -7,7 +7,7 @@ to your Elixir/Phoenix Apps.
 
 ![Build Status](https://img.shields.io/travis/com/dwyl/elixir-auth-github/master?color=bright-green&style=flat-square)
 [![codecov.io](https://img.shields.io/codecov/c/github/dwyl/elixir-auth-github/master.svg?style=flat-square)](http://codecov.io/github/dwyl/elixir-auth-github?branch=master)
-![Hex.pm](https://img.shields.io/hexpm/v/elixir_auth_github?color=brightgreen&style=flat-square)
+[![Hex.pm](https://img.shields.io/hexpm/v/elixir_auth_github?color=brightgreen&style=flat-square)](https://hex.pm/packages/elixir_auth_github)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat-square)](https://github.com/dwyl/elixir-auth-github/issues)
 <!--
 [![HitCount](http://hits.dwyl.io/dwyl/elixir-auth-github.svg)](http://hits.dwyl.io/dwyl/elixir-auth-github)
@@ -124,8 +124,46 @@ required by `elixir-auth-github` see:
 
 
 
+## 3. Create 2 New Files  ➕
+
+Create two files in order to handle the requests
+to the GitHub OAuth API and display data to people using your app.
+
+### 3.1 Create a `GithubAuthController` in your Project
+
+In order to process and _display_ the data
+returned by the GitHub OAuth2 API,
+we need to create a new `controller`.
+
+Create a new file called
+`lib/app_web/controllers/github_auth_controller.ex`
 
 
+
+
+
+
+
+
+
+
+<br />
+
+## Useful Links and Further Reading
+
++ GitHub Apps docs:
+https://developer.github.com/apps/building-github-apps/creating-a-github-app
++ Authorizing OAuth Apps:
+https://developer.github.com/apps/building-oauth-apps/authorizing-oauth-apps
++ Basics of Authentication:
+https://developer.github.com/v3/guides/basics-of-authentication/
++ GitHub Logos and Usage: https://github.com/logos <br />
+(_tldr: no official auth buttons but use of Octocat logo is encouraged
+to help users identify that your App has a GitHub integration_)
+
+<br /><br /><br /><hr />
+
+# SUPERSEDED
 
 
 
@@ -151,17 +189,3 @@ You will also need a route in your app for the callback url you created earlier.
 If succesful it will return in the format of `{:ok, USER-INFO-MAP}`, if unsuccesful it will return `{:error, ERROR-INFO}`
 
 And there you have it! You still have to do a bit of set up, but we do the business end of the OAuth flow for you.
-
-
-
-## Useful Links and Further Reading
-
-+ GitHub Apps docs:
-https://developer.github.com/apps/building-github-apps/creating-a-github-app
-+ Authorizing OAuth Apps:
-https://developer.github.com/apps/building-oauth-apps/authorizing-oauth-apps
-+ Basics of Authentication:
-https://developer.github.com/v3/guides/basics-of-authentication/
-+ GitHub Logos and Usage: https://github.com/logos <br />
-(_tldr: no official auth buttons but use of octocat logo is encouraged
-to help users identify that your App has a GitHub integration_)
