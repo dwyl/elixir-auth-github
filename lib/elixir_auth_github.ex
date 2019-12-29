@@ -1,7 +1,7 @@
 defmodule ElixirAuthGithub do
   @moduledoc """
-  ElixirAuthGithub is an Elixir package
-  that handles all your GitHub OAuth needs in an Elixir/Phoenix App.
+  ElixirAuthGithub is an Elixir package that handles all your GitHub OAuth needs
+  so you can add "Sign in with GitHub" to any Elixir/Phoenix App.
 
   For all setup details, please see: https://github.com/dwyl/elixir-auth-github
   """
@@ -9,12 +9,16 @@ defmodule ElixirAuthGithub do
   @github_auth_url "https://github.com/login/oauth/access_token?"
   @httpoison Application.get_env(:elixir_auth_github, :httpoison) || HTTPoison
   @valid_scopes [
-    "user", "user:email", "user:follow", "public_repo", "repo",
-    "repo_deployment", "repo:status", "repo:invite", "delete_repo",
+    "user", "user:email", "user:follow", "public_repo",
+    "repo_deployment", "repo:status", "repo:invite",
     "notifications", "gist", "read:repo_hook", "write:repo_hook",
-    "admin:org_hook", "read:org", "write:org", "admin:org", "read:public_key",
-    "write:public_key", "admin:public_key", "read:gpg_key", "write:gpg_key",
-    "admin:gpg_key"
+    "admin:org_hook", "read:org",
+    # The following scopes are considered potential security issues
+    # because they allow *admin* access to repos, orgs or RSA keys:
+    # "repo", "delete_repo", "write:org", "admin:org", "read:public_key",
+    # "write:public_key", "admin:public_key", "read:gpg_key", "write:gpg_key",
+    # "admin:gpg_key"
+    # if you need these scopes or any others please see: https://git.io/JeNCQ
   ]
 
   @doc """
