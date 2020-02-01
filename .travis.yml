@@ -2,7 +2,10 @@ language: elixir
 elixir:
   - 1.4
 env:
-  - MIX_ENV=test
+  global:
+    - MIX_ENV=test
+    - GITHUB_CLIENT_ID=d6fca75c63daa014c187
+    - GITHUB_CLIENT_SECRET=8eeb143935d1a505692aaef856db9b4da8245f3c
 script:
   - mix do deps.get, compile --warnings-as-errors, coveralls.json
 after_success:
