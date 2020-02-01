@@ -31,7 +31,7 @@ defmodule ElixirAuthGithub do
 
   @doc """
     login_url_with_scope/1 takes a list of GitHub auth scopes to add to the url.
-    Return URL.
+    Returns `String` URL.
   """
   def login_url_with_scope(scopes) do
     login_url() <> "&scope=#{Enum.join(scopes, "%20")}"
@@ -53,18 +53,6 @@ defmodule ElixirAuthGithub do
     |> Map.get(:body)
     |> URI.decode_query
     |> check_authenticated
-  end
-
-  @doc """
-  Same as `github_auth/1` except it adds the state String returned from GitHub.
-  """
-  def github_auth(code, state) do
-    case github_auth(code) do
-      {:ok, user} ->
-        {:ok, Map.put(user, "state", state)}
-      error ->
-        error
-    end
   end
 
   defp check_authenticated(%{"access_token" => access_token}) do
