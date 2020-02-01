@@ -56,8 +56,8 @@ defmodule ElixirAuthGithub do
   Bad authentication codes will return a tuple with `:error` and an error map.
   """
   def github_auth(code) do
-    %{"client_id" => Application.get_env(:elixir_auth_github, :client_id),
-      "client_secret" => Application.get_env(:elixir_auth_github, :client_secret),
+    %{"client_id" => System.get_env("GITHUB_CLIENT_ID"),
+      "client_secret" => System.get_env("GITHUB_CLIENT_SECRET"),
       "code" => code}
     |> URI.encode_query
     |> (&(@httpoison.post!(@github_auth_url <> &1, ""))).()

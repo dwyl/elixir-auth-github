@@ -6,6 +6,11 @@ defmodule ElixirAuthGithubTest do
     System.get_env("GITHUB_CLIENT_ID")
   end
 
+  defp setup_test_environment_variables do
+    System.put_env([ {"GITHUB_CLIENT_ID", "TEST_ID"},
+      {"GITHUB_CLIENT_SECRET", "TEST_SECRET"}])
+  end
+
   test "login_url/0 returns authorize URL with client_id appended" do
     assert ElixirAuthGithub.login_url() ==
       "https://github.com/login/oauth/authorize?client_id=" <> client_id()
@@ -19,38 +24,30 @@ defmodule ElixirAuthGithubTest do
   end
 
   test "github_auth returns a user and token" do
-    Application.put_env :elixir_auth_github, :client_id, "TEST_ID"
-    Application.put_env :elixir_auth_github, :client_secret, "TEST_SECRET"
+    setup_test_environment_variables()
 
-    assert ElixirAuthGithub.github_auth("12345") == {:ok, %{"access_token" => "12345", "login" => "test_user"}}
+    assert ElixirAuthGithub.github_auth("12345") ==
+      {:ok, %{"access_token" => "12345", "login" => "test_user"}}
   end
 
   test "github_auth returns an error with a bad code" do
-    Application.put_env :elixir_auth_github, :client_id, "TEST_ID"
-    Application.put_env :elixir_auth_github, :client_secret, "TEST_SECRET"
-
-    assert ElixirAuthGithub.github_auth("1234") == {:error, %{"error" => "error"}}
-  end
-
-  test "test" do
-    Application.put_env :elixir_auth_github, :client_id, "TEST_ID"
-    Application.put_env :elixir_auth_github, :client_secret, "TEST_SECRET"
-
-    assert ElixirAuthGithub.github_auth("123") == {:error, %{"error" => "test error"}}
+    setup_test_environment_variables()
+    assert ElixirAuthGithub.github_auth("1234") ==
+      {:error, %{"error" => "error"}}
   end
 
   test "Test github auth with state" do
-    Application.put_env :elixir_auth_github, :client_id, "TEST_ID"
-    Application.put_env :elixir_auth_github, :client_secret, "TEST_SECRET"
+    setup_test_environment_variables()
 
-    assert ElixirAuthGithub.github_auth("12345", "hello") == {:ok, %{"access_token" => "12345", "login" => "test_user", "state" => "hello"}}
+    assert ElixirAuthGithub.github_auth("12345", "hello") ==
+      {:ok, %{"access_token" => "12345", "login" => "test_user", "state" => "hello"}}
   end
 
   test "test github auth failure with state" do
-    Application.put_env :elixir_auth_github, :client_id, "TEST_ID"
-    Application.put_env :elixir_auth_github, :client_secret, "TEST_SECRET"
+    setup_test_environment_variables()
 
-    assert ElixirAuthGithub.github_auth("1234", "hello") == {:error, %{"error" => "error"}}
+    assert ElixirAuthGithub.github_auth("1234", "hello") ==
+      {:error, %{"error" => "error"}}
   end
 
   test "test login_url_with_scope/1 with all valid scopes" do
