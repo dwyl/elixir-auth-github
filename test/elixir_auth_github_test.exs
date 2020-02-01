@@ -2,27 +2,20 @@ defmodule ElixirAuthGithubTest do
   use ExUnit.Case
   doctest ElixirAuthGithub
 
-  test "login_url returns an error without environment vars" do
-    Application.put_env :elixir_auth_github, :client_id, nil
-    assert ElixirAuthGithub.login_url() == "ENVIRONMENT VARIABLES NOT SET"
+  defp client_id do
+    System.get_env("GITHUB_CLIENT_ID")
   end
 
-  test "login_url returns the correct url when environment vars are set" do
-    Application.put_env(:elixir_auth_github, :client_id, "TEST_ID")
-    Application.get_env(:elixir_auth_github, :client_id)
-
-    assert ElixirAuthGithub.login_url() == "https://github.com/login/oauth/authorize?client_id=TEST_ID"
+  test "login_url/0 returns authorize URL with client_id appended" do
+    assert ElixirAuthGithub.login_url() ==
+      "https://github.com/login/oauth/authorize?client_id=" <> client_id()
   end
 
-  test "login_url with state returns an error without environment vars" do
-    Application.put_env :elixir_auth_github, :client_id, nil
-    assert ElixirAuthGithub.login_url("hiya") == "ENVIRONMENT VARIABLES NOT SET"
-  end
+  test "login_url/1 with state returns authorize URL with client_id" do
+    url = "https://github.com/login/oauth/authorize?client_id="
+      <> client_id() <> "&state=california"
 
-  test "login_url with state returns the correct url when environment vars are set" do
-    Application.put_env :elixir_auth_github, :client_id, "TEST_ID"
-
-    assert ElixirAuthGithub.login_url("hiya") == "https://github.com/login/oauth/authorize?client_id=TEST_ID&state=hiya"
+    assert ElixirAuthGithub.login_url("california") == url
   end
 
   test "github_auth returns a user and token" do
@@ -61,27 +54,27 @@ defmodule ElixirAuthGithubTest do
   end
 
   test "test login_url_with_scope/1 with all valid scopes" do
-    Application.put_env :elixir_auth_github, :client_id, "TEST_ID"
+    url = "https://github.com/login/oauth/authorize?client_id="
+      <> client_id() <> "&scope=user%20user:email"
 
-    assert ElixirAuthGithub.login_url_with_scope(["user", "user:email"]) == {:ok, "https://github.com/login/oauth/authorize?client_id=TEST_ID&scope=user%20user:email"}
+    assert ElixirAuthGithub.login_url_with_scope(["user", "user:email"]) ==
+      {:ok, url}
   end
 
-  test "test login_url_with_scope/1 with some invalid scopes" do
-    Application.put_env :elixir_auth_github, :client_id, "TEST_ID"
-
-    assert ElixirAuthGithub.login_url_with_scope(["user", "user:email", "other"]) == {:ok, "https://github.com/login/oauth/authorize?client_id=TEST_ID&scope=user%20user:email"}
+  test "test login_url_with_scope/1 with some invalid scopes (should be :ok)" do
+    url = "https://github.com/login/oauth/authorize?client_id="
+      <> client_id() <> "&scope=user%20user:email"
+    scopes = ["user", "user:email", "other"]
+    assert ElixirAuthGithub.login_url_with_scope(scopes) == {:ok, url}
   end
 
-  test "test login_url_with_scope/1 without setting environment variable" do
-    Application.put_env :elixir_auth_github, :client_id, nil
-
-    assert ElixirAuthGithub.login_url_with_scope(["user", "user:email", "other"]) == {:err, "ENVIRONMENT VARIABLES NOT SET"}
-  end
 
   test "test login_url_with_scope/2 with all valid inputs" do
-    Application.put_env :elixir_auth_github, :client_id, "TEST_ID"
+    url = "https://github.com/login/oauth/authorize?client_id="
+      <> client_id() <> "&scope=user%20user:email&state=hello"
 
-    assert ElixirAuthGithub.login_url_with_scope(["user", "user:email"], "hello") == {:ok, "https://github.com/login/oauth/authorize?client_id=TEST_ID&scope=user%20user:email&state=hello"}
+    assert ElixirAuthGithub.login_url_with_scope(["user", "user:email"], "hello")
+      == {:ok, url}
   end
 
   test "test login_url_with_scope/2 with no valid scopes" do

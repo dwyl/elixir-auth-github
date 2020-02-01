@@ -6,7 +6,8 @@ defmodule ElixirAuthGithub do
   For all setup details, please see: https://github.com/dwyl/elixir-auth-github
   """
 
-  @github_auth_url "https://github.com/login/oauth/access_token?"
+  @github_url "https://github.com/login/oauth/"
+  @github_auth_url @github_url <> "access_token?"
   @httpoison Application.get_env(:elixir_auth_github, :httpoison) || HTTPoison
   @valid_scopes [
     "user", "user:email", "user:follow", "public_repo",
@@ -22,29 +23,22 @@ defmodule ElixirAuthGithub do
   ]
 
   @doc """
-  Returns a String URL to be used as the initial OAuth redirect.
+  `login_url/0` returns a `String` URL to be used as the initial OAuth redirect.
 
-  Requires `client_id` and `client_secret` environment variables to be set.
+  Requires `GITHUB_CLIENT_ID` environment variable to be set.
+  See step 2 of setup instructions.
   """
   def login_url do
-    case Application.get_env(:elixir_auth_github, :client_id) do
-      nil ->
-        "ENVIRONMENT VARIABLES NOT SET"
-      client_id ->
-        "https://github.com/login/oauth/authorize?client_id=#{client_id}"
-    end
+    client_id = System.get_env("GITHUB_CLIENT_ID")
+    @github_url <> "authorize?client_id=#{client_id}"
   end
 
   @doc """
-  Identical to `login_url/0` except with an additional state property.
+  Identical to `login_url/0` except with an additional state property
+  appended to the url.
   """
   def login_url(state) do
-    case login_url() do
-      "ENVIRONMENT VARIABLES NOT SET" ->
-        "ENVIRONMENT VARIABLES NOT SET"
-      url ->
-        url <> "&state=#{state}"
-    end
+    login_url()  <> "&state=#{state}"
   end
 
   @doc """
@@ -54,16 +48,13 @@ defmodule ElixirAuthGithub do
     environment variables not being set, or no valid scopes being provided.
   """
   def login_url_with_scope(scopes) do
-    case login_url() do
-      "ENVIRONMENT VARIABLES NOT SET" ->
-        {:err, "ENVIRONMENT VARIABLES NOT SET"}
-      url ->
-        case filter_valid_scopes(scopes) do
-          {:ok, scopes} ->
-            {:ok, url <> "&scope=#{Enum.join(scopes, "%20")}"}
-          err ->
-            err
-        end
+    url = login_url()
+    # IO.inspect(scopes)
+    case filter_valid_scopes(scopes) do
+      {:ok, scopes} ->
+        {:ok, url <> "&scope=#{Enum.join(scopes, "%20")}"}
+      err ->
+        err
     end
   end
 
@@ -81,8 +72,7 @@ defmodule ElixirAuthGithub do
   end
 
   defp filter_valid_scopes(scopes) do
-    Enum.filter(scopes,
-                fn scope -> Enum.member? @valid_scopes, scope end)
+    Enum.filter(scopes, fn scope -> Enum.member? @valid_scopes, scope end)
     |> case do
       [] ->
         {:err, "no valid scopes provided"}
