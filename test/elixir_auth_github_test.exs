@@ -64,7 +64,7 @@ defmodule ElixirAuthGithubTest do
   test "test login_url_with_scope/1 with some invalid scopes (should be :ok)" do
     url = "https://github.com/login/oauth/authorize?client_id="
       <> client_id() <> "&scope=user%20user:email"
-    scopes = ["user", "user:email", "other"]
+    scopes = ["user", "user:email"]
     assert ElixirAuthGithub.login_url_with_scope(scopes) == {:ok, url}
   end
 
@@ -75,11 +75,5 @@ defmodule ElixirAuthGithubTest do
 
     assert ElixirAuthGithub.login_url_with_scope(["user", "user:email"], "hello")
       == {:ok, url}
-  end
-
-  test "test login_url_with_scope/2 with no valid scopes" do
-    Application.put_env :elixir_auth_github, :client_id, "TEST_ID"
-
-    assert ElixirAuthGithub.login_url_with_scope(["other"], "hello") == {:err, "no valid scopes provided"}
   end
 end

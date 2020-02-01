@@ -42,20 +42,16 @@ defmodule ElixirAuthGithub do
   end
 
   @doc """
-    takes a list of scopes to add to the url, will check that the scopes are
-    valid, invalid scopes will be filtered out. Return value is in the format of
+    login_url_with_scope/1 takes a list of GitHub auth scopes to add to the url.
+    Return value is in the format of
     {:ok, url} or {:err, reason}. Reasons this function can error are
     environment variables not being set, or no valid scopes being provided.
   """
   def login_url_with_scope(scopes) do
     url = login_url()
     # IO.inspect(scopes)
-    case filter_valid_scopes(scopes) do
-      {:ok, scopes} ->
-        {:ok, url <> "&scope=#{Enum.join(scopes, "%20")}"}
-      err ->
-        err
-    end
+
+    {:ok, url <> "&scope=#{Enum.join(scopes, "%20")}"}
   end
 
   @doc """
@@ -71,15 +67,15 @@ defmodule ElixirAuthGithub do
     end
   end
 
-  defp filter_valid_scopes(scopes) do
-    Enum.filter(scopes, fn scope -> Enum.member? @valid_scopes, scope end)
-    |> case do
-      [] ->
-        {:err, "no valid scopes provided"}
-      scopes ->
-        {:ok, scopes}
-    end
-  end
+  # defp filter_valid_scopes(scopes) do
+  #   Enum.filter(scopes, fn scope -> Enum.member? @valid_scopes, scope end)
+  #   |> case do
+  #     [] ->
+  #       {:err, "no valid scopes provided"}
+  #     scopes ->
+  #       {:ok, scopes}
+  #   end
+  # end
 
 
   @doc """
