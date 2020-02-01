@@ -37,15 +37,15 @@ defmodule ElixirAuthGithub.Mixfile do
   end
 
   defp description() do
-   "A module to help simplify github oauth in elixir/phoenix."
+   "The simple way to add GitHub OAuth to your Elixir/Phoenix Apps!"
  end
 
   defp package() do
     [
-      files: ["lib/elixir_auth_github.ex", "lib/httpoison/httpoison.ex", "mix.exs", "README.md", "LICENSE*"],
+      files: ["lib/elixir_auth_github.ex", "mix.exs", "README.md", "LICENSE*"],
       links: %{"GitHub" => "https://github.com/dwyl/elixir-auth-github"},
       licenses: ["GNU GPL v2.0"],
-      maintainers: ["Zooey Miller", "Finn Hodgkin"]
+      maintainers: ["dwyl & friends!"]
     ]
   end
 end
