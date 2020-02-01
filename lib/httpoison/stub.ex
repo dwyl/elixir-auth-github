@@ -7,6 +7,9 @@ defmodule ElixirAuthGithub.HTTPoison.Stub do
     so that we can check the pipeline in ElixirAuthGithub.github_auth
   """
 
+  @doc """
+  `get/3` stubs the HTTPoison get! function when parameters match test vars.
+  """
   def get!(url, headers \\ [], options \\ [])
   def get!("https://api.github.com/user", [
     {"User-Agent", "elixir-practice"},
@@ -19,6 +22,9 @@ defmodule ElixirAuthGithub.HTTPoison.Stub do
     %{body: "{\"login\": \"test_user\"}"}
   end
 
+  @doc """
+  `post/3` stubs the HTTPoison post! function when parameters match test vars.
+  """
   def post!(url, body, headers \\ [], options \\ [])
   def post!("https://github.com/login/oauth/access_token?client_id=TEST_ID&client_secret=TEST_SECRET&code=1234", _body, _headers, _options) do
     %{body: "error=error"}
