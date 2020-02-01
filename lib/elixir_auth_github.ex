@@ -9,18 +9,6 @@ defmodule ElixirAuthGithub do
   @github_url "https://github.com/login/oauth/"
   @github_auth_url @github_url <> "access_token?"
   @httpoison Application.get_env(:elixir_auth_github, :httpoison) || HTTPoison
-  @valid_scopes [
-    "user", "user:email", "user:follow", "public_repo",
-    "repo_deployment", "repo:status", "repo:invite",
-    "notifications", "gist", "read:repo_hook", "write:repo_hook",
-    "admin:org_hook", "read:org",
-    # The following scopes are considered potential security issues
-    # because they allow *admin* access to repos, orgs or RSA keys:
-    # "repo", "delete_repo", "write:org", "admin:org", "read:public_key",
-    # "write:public_key", "admin:public_key", "read:gpg_key", "write:gpg_key",
-    # "admin:gpg_key"
-    # if you need these scopes or any others please see: https://git.io/JeNCQ
-  ]
 
   @doc """
   `login_url/0` returns a `String` URL to be used as the initial OAuth redirect.
@@ -48,10 +36,7 @@ defmodule ElixirAuthGithub do
     environment variables not being set, or no valid scopes being provided.
   """
   def login_url_with_scope(scopes) do
-    url = login_url()
-    # IO.inspect(scopes)
-
-    {:ok, url <> "&scope=#{Enum.join(scopes, "%20")}"}
+    login_url() <> "&scope=#{Enum.join(scopes, "%20")}"
   end
 
   @doc """
@@ -59,23 +44,8 @@ defmodule ElixirAuthGithub do
     Returns value in the format of {:err, reason} or {:ok, url}
   """
   def login_url_with_scope(scopes, state) do
-    case login_url_with_scope(scopes) do
-      {:ok, url} ->
-        {:ok, url <> "&state=#{state}"}
-      err ->
-        err
-    end
+    login_url_with_scope(scopes) <> "&state=#{state}"
   end
-
-  # defp filter_valid_scopes(scopes) do
-  #   Enum.filter(scopes, fn scope -> Enum.member? @valid_scopes, scope end)
-  #   |> case do
-  #     [] ->
-  #       {:err, "no valid scopes provided"}
-  #     scopes ->
-  #       {:ok, scopes}
-  #   end
-  # end
 
 
   @doc """

@@ -71,15 +71,18 @@ Copy the two keys and export them in your project
 see: **Step 3** of the
 [README.md](https://github.com/dwyl/elixir-auth-github/blob/master/create-github-app-guide.md)
 
+> ⚠️ Don't worry, these keys aren't valid
+(_they were revoked **`before`** we published this guide_).
+They are just here for illustration purposes.
 
-<br />
+<br /><br />
 
-# Note
+# Note on Production Deployment
 
 When you ship your app to your Production environment,
 you will need to re-visit steps 3 & 4
 to update your app settings URL & callback
-to reflect the URl where you are deploying your app e.g:
+to reflect the URL where you are deploying your app e.g:
 
 
 In our case

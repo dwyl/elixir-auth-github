@@ -57,23 +57,21 @@ defmodule ElixirAuthGithubTest do
     url = "https://github.com/login/oauth/authorize?client_id="
       <> client_id() <> "&scope=user%20user:email"
 
-    assert ElixirAuthGithub.login_url_with_scope(["user", "user:email"]) ==
-      {:ok, url}
+    assert ElixirAuthGithub.login_url_with_scope(["user", "user:email"]) == url
   end
 
   test "test login_url_with_scope/1 with some invalid scopes (should be :ok)" do
     url = "https://github.com/login/oauth/authorize?client_id="
       <> client_id() <> "&scope=user%20user:email"
     scopes = ["user", "user:email"]
-    assert ElixirAuthGithub.login_url_with_scope(scopes) == {:ok, url}
+    assert ElixirAuthGithub.login_url_with_scope(scopes) == url
   end
 
 
   test "test login_url_with_scope/2 with all valid inputs" do
     url = "https://github.com/login/oauth/authorize?client_id="
       <> client_id() <> "&scope=user%20user:email&state=hello"
-
-    assert ElixirAuthGithub.login_url_with_scope(["user", "user:email"], "hello")
-      == {:ok, url}
+    scopes = ["user", "user:email"]
+    assert ElixirAuthGithub.login_url_with_scope(scopes, "hello") == url
   end
 end
