@@ -75,9 +75,11 @@ defmodule ElixirAuthGithub do
 
   defp set_user_details(%{"login" => _name} = user, access_token) do
     user = Map.put(user, "access_token", access_token)
-
-    {:ok, user}
-  end
+    # transform map with keys as strings into keys as atoms!
+    atom_key_map = for {key, val} <- user, into: %{},
+      do: {String.to_atom(key), val}
+    {:ok, atom_key_map}
+  end # https://stackoverflow.com/questions/31990134
 
   defp set_user_details(error, _token), do: {:error, error}
 end
