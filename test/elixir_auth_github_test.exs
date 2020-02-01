@@ -63,12 +63,4 @@ defmodule ElixirAuthGithubTest do
     scopes = ["user", "user:email"]
     assert ElixirAuthGithub.login_url_with_scope(scopes) == url
   end
-
-
-  test "test login_url_with_scope/2 with all valid inputs" do
-    url = "https://github.com/login/oauth/authorize?client_id="
-      <> client_id() <> "&scope=user%20user:email&state=hello"
-    scopes = ["user", "user:email"]
-    assert ElixirAuthGithub.login_url_with_scope(scopes, "hello") == url
-  end
 end

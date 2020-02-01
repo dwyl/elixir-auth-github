@@ -23,7 +23,7 @@ defmodule ElixirAuthGithub do
 
   @doc """
   Identical to `login_url/0` except with an additional state property
-  appended to the url.
+  appended to the URL.
   """
   def login_url(state) do
     login_url()  <> "&state=#{state}"
@@ -31,22 +31,11 @@ defmodule ElixirAuthGithub do
 
   @doc """
     login_url_with_scope/1 takes a list of GitHub auth scopes to add to the url.
-    Return value is in the format of
-    {:ok, url} or {:err, reason}. Reasons this function can error are
-    environment variables not being set, or no valid scopes being provided.
+    Return URL.
   """
   def login_url_with_scope(scopes) do
     login_url() <> "&scope=#{Enum.join(scopes, "%20")}"
   end
-
-  @doc """
-    Does the same as login_url_with_scope/1 but adds state onto the end as well.
-    Returns value in the format of {:err, reason} or {:ok, url}
-  """
-  def login_url_with_scope(scopes, state) do
-    login_url_with_scope(scopes) <> "&state=#{state}"
-  end
-
 
   @doc """
   When called with a valid OAuth callback code, `github_auth/1` makes a number of
