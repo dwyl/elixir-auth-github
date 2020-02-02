@@ -341,7 +341,7 @@ and will see welcome message:
 <br />
 
 > If you got stuck setting up your App,
-checkout our working demo:
+check out our working demo:
 https://github.com/dwyl/elixir-auth-github-demo <br />
 > The demo is deployed on Heroku:
 https://elixir-auth-github-demo.herokuapp.com
