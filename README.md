@@ -112,7 +112,7 @@ GITHUB_CLIENT_SECRET=8eeb143935d1a505692aaef856db9b4da8245f3c
 ```
 
 > ⚠️ Don't worry, these keys aren't valid
-(_they were revoked **`before`** we published this guide_).
+(_they were revoked **`before`** we published this guide_). <br />
 They are just here for illustration purposes.
 
 
@@ -142,6 +142,8 @@ we need to create a new `controller`.
 Create a new file called
 `lib/app_web/controllers/github_auth_controller.ex`
 
+Add the folowing code to the file:
+
 ```elixir
 defmodule AppWeb.GithubAuthController do
   use AppWeb, :controller
@@ -157,18 +159,19 @@ defmodule AppWeb.GithubAuthController do
   end
 end
 ```
+This function is invoked as the _callback_
+when the person has successfully authenticated with GitHub.
 
-This code does 3 things:
-+ Create a one-time auth token based on the response `code` sent by GitHub
-after the person authenticates.
-+ Request the person's profile data from GitHub based on an `access_token`
+The code does 2 things:
++ Request the person's profile data from GitHub
+based on the `code` sent by GitHub's callback request.
 + Renders a `:welcome` view displaying some profile data
 to confirm that login with GitHub was successful.
 
-> Note: we are placing the `welcome.html.eex` template
+> **Note**: we are placing the `welcome.html.eex` template
 in the `template/page` directory to save having to create
 any more directories and view files.
-You are free to organise your code however you prefer.
+You are free to organise your code however you prefer. 👍
 
 ### 3.2 Create `welcome` template 📝
 
@@ -296,8 +299,6 @@ end
 Open the `/lib/app_web/templates/page/index.html.eex` file
 and type (_or paste_) the following code:
 
-> **`TODO`**: create button: https://github.com/dwyl/elixir-auth-github/issues/33
-
 ```html
 <section class="phx-hero">
   <h1>Welcome to Awesome App!</h1>
@@ -307,6 +308,10 @@ and type (_or paste_) the following code:
   </a>
 </section>
 ```
+
+> **Note**: we are using an `<img>` button for code brevity. <br />
+We suggest you use the `SVG+CSS` approach described
+[below](#optimised-svgcss-button). 👇
 
 ## 6. _Run_ the App!
 
@@ -330,6 +335,9 @@ and will see welcome message:
 
 ![welcome](https://user-images.githubusercontent.com/194400/73599112-e8d4cf00-4537-11ea-8379-a58affbea560.png)
 
+
+## _Congratulations_! You have GitHub Oauth in your Elixir App! 🎉
+
 <br />
 
 > If you got stuck setting up your App,
@@ -348,20 +356,12 @@ Success:
 
 ![heroku-demo-welcome](https://user-images.githubusercontent.com/194400/73600142-3b1bed00-4544-11ea-977a-a38bbe5f129c.png)
 
-
 <br />
 
-## Useful Links and Further Reading
 
-+ GitHub Apps docs:
-https://developer.github.com/apps/building-github-apps/creating-a-github-app
-+ Authorizing OAuth Apps:
-https://developer.github.com/apps/building-oauth-apps/authorizing-oauth-apps
-+ Basics of Authentication:
-https://developer.github.com/v3/guides/basics-of-authentication/
-+ GitHub Logos and Usage: https://github.com/logos <br />
-(_tldr: no official auth buttons but use of Octocat logo is encouraged
-to help users identify that your App has a GitHub integration_)
+
+
+<br /> <br />
 
 
 ## _Optimised_ SVG+CSS Button
@@ -453,3 +453,18 @@ Even thought the `<img>` had an `alt` attribute
 which is a lot better than nothing,
 the `SVG+CSS` button can be re-interpreted
 by a non-screen device and more easily transformed.
+
+
+<br />
+
+## Useful Links and Further Reading
+
++ GitHub Apps docs:
+https://developer.github.com/apps/building-github-apps/creating-a-github-app
++ Authorizing OAuth Apps:
+https://developer.github.com/apps/building-oauth-apps/authorizing-oauth-apps
++ Basics of Authentication:
+https://developer.github.com/v3/guides/basics-of-authentication/
++ GitHub Logos and Usage: https://github.com/logos <br />
+(_tldr: no official auth buttons but use of Octocat logo is encouraged
+to help users identify that your App has a GitHub integration_)
