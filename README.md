@@ -368,17 +368,20 @@ to help users identify that your App has a GitHub integration_)
 
 ## _Optimised_ SVG+CSS Button
 
-In step 5.1 above, we suggest using an `<img>`
+In **step 5.1** above, we suggest using an `<img>`
 for the `Sign in with GitHub` button.
 
-But even this image https://i.imgur.com/qwoHBIZ.png is 9kb:
+But even though this image appears small **`357 × 61 px`**
+https://i.imgur.com/qwoHBIZ.png it is **`9kb`**:
 
 ![sign-in-with-github-button-9kb](https://user-images.githubusercontent.com/194400/73606149-1143e400-459f-11ea-941f-ae62d3918778.png)
 
 We could spend some time in a graphics editor optimising the image,
-but we _know_ we can do better!
+but we _know_ we can do better by using our `CSS` skills! 💡
 
-The following code
+The following code re-creates the `<img>`
+using the GitHub logo **`SVG`**
+and `CSS` for layout/style:
 
 ```html
 <div style="display:flex; flex-direction:column; width:180px; margin-left:20px">
@@ -409,7 +412,7 @@ The result looks _better_ than the `<img>` button:
 
 ![img-vs-svg-button](https://user-images.githubusercontent.com/194400/73606464-71885500-45a2-11ea-995c-9abdd4c6b983.png)
 
-
+It can be scaled to any screen size so it will _always_ look great! <br />
 Using http://bytesizematters.com we see that our SVG+CSS button is only **`1kb`**:
 ![byte-size-of-github-button](https://user-images.githubusercontent.com/194400/71247098-fcbdcc00-230f-11ea-883d-8ed4d428846b.png)
 
@@ -445,7 +448,7 @@ to use this SVG+CSS button
 and it means the person's web browser
 can _automatically_ localise your App!
 
-### _Accessibility_
+### _Accessibility_
 
 The `SVG+CSS` button is more accessible than the image.
 Even thought the `<img>` had an `alt` attribute
