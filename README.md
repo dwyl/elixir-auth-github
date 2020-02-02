@@ -265,6 +265,9 @@ get "/auth/github/callback", GithubAuthController, :index
 That will direct the API request response
 to the `GithubAuthController` `:index` function we defined above.
 
+> Example:
+[/lib/app_web/router.ex#L20](https://github.com/dwyl/elixir-auth-github-demo/blob/8dd8f7dd7cc43a9a7e918dd11c920833e17ef0af/lib/app_web/router.ex#L20)
+
 
 ## 5. Update `PageController.index`
 
@@ -361,3 +364,91 @@ https://developer.github.com/v3/guides/basics-of-authentication/
 + GitHub Logos and Usage: https://github.com/logos <br />
 (_tldr: no official auth buttons but use of Octocat logo is encouraged
 to help users identify that your App has a GitHub integration_)
+
+
+## _Optimised_ SVG+CSS Button
+
+In step 5.1 above, we suggest using an `<img>`
+for the `Sign in with GitHub` button.
+
+But even this image https://i.imgur.com/qwoHBIZ.png is 9kb:
+
+![sign-in-with-github-button-9kb](https://user-images.githubusercontent.com/194400/73606149-1143e400-459f-11ea-941f-ae62d3918778.png)
+
+We could spend some time in a graphics editor optimising the image,
+but we _know_ we can do better!
+
+The following code
+
+```html
+<div style="display:flex; flex-direction:column; width:180px; margin-left:20px">
+  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap">
+  <a href="<%= @oauth_github_url %>"
+    style="display:inline-flex; align-items:center; min-height:30px;
+      background-color:#24292e; font-family:'Roboto',sans-serif;
+      font-size:14px; color:white; text-decoration:none;">
+    <div style="margin: 1px; padding-top:5px; min-height:30px;">
+    <svg height="18" viewBox="0 0 16 16" width="32px" style="fill:white;">
+      <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
+      0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01
+      1.08.58 1.23.82.72 1.21 1.87.87
+      2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12
+      0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08
+      2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0
+      .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+    </svg>
+    </div>
+    <div style="margin-left: 5px;">
+      Sign in with GitHub
+    </div>
+  </a>
+<div>
+```
+
+The result looks _better_ than the `<img>` button:
+
+![img-vs-svg-button](https://user-images.githubusercontent.com/194400/73606464-71885500-45a2-11ea-995c-9abdd4c6b983.png)
+
+
+Using http://bytesizematters.com we see that our SVG+CSS button is only **`1kb`**:
+![byte-size-of-github-button](https://user-images.githubusercontent.com/194400/71247098-fcbdcc00-230f-11ea-883d-8ed4d428846b.png)
+
+That is an **87.5%** bandwidth saving
+on the **`9kb`** of the
+[**`.png`** button](https://github.com/dwyl/elixir-auth-google/issues/25).
+And what's _more_ it reduces the number of HTTP requests
+which means the page loads _even_ faster.
+
+This is used in the Demo app:
+[`lib/app_web/templates/page/index.html.eex`](https://github.com/dwyl/elixir-auth-github-demo/blob/bdabb5e16ee8f49adf9e18ca3bb313e7f81b33ba/lib/app_web/templates/page/index.html.eex)
+
+
+### `i18n`
+
+The _biggest_ advantage of having an SVG+CSS button
+is that you can _translate_ the button text! <br />
+Since the text/copy of the button is now _just_ text in standard HTML,
+the user's web browser can _automatically_ translate it! <br />
+e.g: _French_ 🇬🇧 > 🇫🇷
+
+![french-transalation-of-interface](https://user-images.githubusercontent.com/194400/73606612-e8721d80-45a3-11ea-98dd-2ef2e7eee0e3.png)
+
+This is _much_ better UX for the **80%** of people in the world
+who do _not_ speak English _fluently_.
+The _single_ biggest engine for growth in startup companies
+is [_translating_](https://youtu.be/T9ikpoF2GH0?t=463)
+their user interface into more languages.
+Obviously don't focus on translations
+while you're building your MVP,
+but if it's no extra _work_
+to use this SVG+CSS button
+and it means the person's web browser
+can _automatically_ localise your App!
+
+### _Accessibility_
+
+The `SVG+CSS` button is more accessible than the image.
+Even thought the `<img>` had an `alt` attribute
+which is a lot better than nothing,
+the `SVG+CSS` button can be re-interpreted
+by a non-screen device and more easily transformed.
