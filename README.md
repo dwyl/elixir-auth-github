@@ -336,7 +336,7 @@ and will see welcome message:
 ![welcome](https://user-images.githubusercontent.com/194400/73599112-e8d4cf00-4537-11ea-8379-a58affbea560.png)
 
 
-## _Congratulations_! You have GitHub Oauth in your Elixir App! 🎉
+## _Congratulations_! You have GitHub Oauth in your Elixir App! 🎉
 
 <br />
 
