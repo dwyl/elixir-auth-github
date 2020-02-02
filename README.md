@@ -49,7 +49,7 @@ It's targeted at _complete_ beginners
 with no prior experience/knowledge
 of auth "schemes" or "strategies". <br />
 Just follow the detailed instructions
-and you'll be up-and running in 5 minutes.
+and you'll be up and running in 5 minutes.
 
 
 # _How_? 💻
