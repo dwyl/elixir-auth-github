@@ -1,6 +1,12 @@
 language: elixir
 elixir:
-  - 1.4
+  - 1.9
+otp_release:
+  - 22.1.8
+cache:
+  directories:
+    - _build
+    - deps
 env:
   global:
     - MIX_ENV=test
