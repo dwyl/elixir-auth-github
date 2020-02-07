@@ -73,7 +73,7 @@ Add a line for **`:elixir_auth_github`** in the **`deps`** list:
 ```elixir
 def deps do
   [
-    {:elixir_auth_github, "~> 1.0.2"}
+    {:elixir_auth_github, "~> 1.0.3"}
   ]
 end
 ```
