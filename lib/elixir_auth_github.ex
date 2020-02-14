@@ -22,19 +22,21 @@ defmodule ElixirAuthGithub do
   end
 
   @doc """
-  Identical to `login_url/0` except with an additional state property
+  Identical to `login_url/0` except with an additional state and scope properties
   appended to the URL.
   """
-  def login_url(state) do
-    login_url()  <> "&state=#{state}"
+  def login_url(%{scopes: scopes, state: state}) do
+    login_url()
+    <> "&scope=#{Enum.join(scopes, "%20")}"
+    <> "&state=#{state}"
   end
 
-  @doc """
-    login_url_with_scope/1 takes a list of GitHub auth scopes to add to the url.
-    Returns `String` URL.
-  """
-  def login_url_with_scope(scopes) do
+  def login_url(%{scopes: scopes}) do
     login_url() <> "&scope=#{Enum.join(scopes, "%20")}"
+  end
+
+  def login_url(%{state: state}) do
+    login_url()  <> "&state=#{state}"
   end
 
   @doc """
