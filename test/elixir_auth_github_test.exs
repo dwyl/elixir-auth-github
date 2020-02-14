@@ -31,7 +31,7 @@ defmodule ElixirAuthGithubTest do
     assert ElixirAuthGithub.login_url(%{scopes: ["user", "user:email"]}) == url
   end
 
-  test "test login_url_with_scope/1 with all valid scopes and state" do
+  test "test login_url/1 with all valid scopes and state" do
     url =
       "https://github.com/login/oauth/authorize?client_id=" <>
         client_id() <> "&scope=user%20user:email" <> "&state=california"
@@ -39,7 +39,7 @@ defmodule ElixirAuthGithubTest do
     assert ElixirAuthGithub.login_url(%{scopes: ["user", "user:email"], state: "california"}) == url
   end
 
-  test "test login_url_with_scope/1 with some invalid scopes (should be :ok)" do
+  test "test login_url/1 with some invalid scopes (should be :ok)" do
     url =
       "https://github.com/login/oauth/authorize?client_id=" <>
         client_id() <> "&scope=user%20user:email"
