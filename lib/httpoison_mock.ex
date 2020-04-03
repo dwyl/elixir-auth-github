@@ -10,6 +10,14 @@ defmodule ElixirAuthGithub.HTTPoisonMock do
   @doc """
   `get/3` stubs the HTTPoison get! function when parameters match test vars.
   """
+  @valid_body Poison.encode!(%{
+                access_token: "12345",
+                login: "test_user",
+                name: "Testy McTestface",
+                email: "test@gmail.com",
+                avatar_url: "https://avatars3.githubusercontent.com/u/10835816"
+              })
+
   def get!(url, headers \\ [], options \\ [])
 
   def get!(
@@ -24,7 +32,7 @@ defmodule ElixirAuthGithub.HTTPoisonMock do
   end
 
   def get!(_url, _headers, _options) do
-    %{body: "{\"login\": \"test_user\"}"}
+    %{body: @valid_body}
   end
 
   @doc """
@@ -51,11 +59,6 @@ defmodule ElixirAuthGithub.HTTPoisonMock do
   end
 
   def post!(_url, _body, _headers, _options) do
-    %{
-      body: "access_token=12345",
-      name: "Alex McAwesome",
-      email: "alex@gmail.com",
-      avatar_url: "https://avatars3.githubusercontent.com/u/10835816"
-    }
+    %{body: @valid_body}
   end
 end

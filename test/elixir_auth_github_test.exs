@@ -51,9 +51,9 @@ defmodule ElixirAuthGithubTest do
 
   test "github_auth returns a user and token" do
     setup_test_environment_variables()
-
-    assert ElixirAuthGithub.github_auth("12345") ==
-             {:ok, %{:access_token => "12345", :login => "test_user"}}
+    {:ok, res} = ElixirAuthGithub.github_auth("12345")
+    IO.inspect(res, label: "res")
+    assert res.login == "test_user"
   end
 
   test "github_auth returns an error with a bad code" do

@@ -55,19 +55,22 @@ defmodule ElixirAuthGithub do
   Bad authentication codes will return a tuple with `:error` and an error map.
   """
   def github_auth(code) do
-    %{
-      "client_id" => System.get_env("GITHUB_CLIENT_ID"),
-      "client_secret" => System.get_env("GITHUB_CLIENT_SECRET"),
-      "code" => code
-    }
-    |> URI.encode_query()
-    |> (&inject_poison().post!(@github_auth_url <> &1, "")).()
+    query =
+      URI.encode_query(%{
+        "client_id" => System.get_env("GITHUB_CLIENT_ID"),
+        "client_secret" => System.get_env("GITHUB_CLIENT_SECRET"),
+        "code" => code
+      })
+
+    inject_poison().post!(@github_auth_url <> query, "")
     |> Map.get(:body)
-    |> URI.decode_query()
+    |> IO.inspect(label: ":body 67")
+    |> Poison.decode!()
     |> check_authenticated
   end
 
   defp check_authenticated(%{"access_token" => access_token}) do
+    IO.inspect(access_token, label: "access_token check_authenticated/1:73")
     access_token
     |> get_user_details
   end
@@ -75,12 +78,14 @@ defmodule ElixirAuthGithub do
   defp check_authenticated(error), do: {:error, error}
 
   defp get_user_details(access_token) do
+    IO.inspect(access_token, label: "access_token get_user_details/1:79")
     inject_poison().get!("https://api.github.com/user", [
       #  https://developer.github.com/v3/#user-agent-required
       {"User-Agent", "ElixirAuthGithub"},
       {"Authorization", "token #{access_token}"}
     ])
     |> Map.get(:body)
+    |> IO.inspect(label: ":body 87")
     |> Poison.decode!()
     |> set_user_details(access_token)
   end
