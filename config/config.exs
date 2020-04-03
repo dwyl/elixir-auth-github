@@ -27,7 +27,7 @@ use Mix.Config
 # Configuration from the imported file will override the ones defined
 # here (which is why it is important to import them last).
 #
-import_config "#{Mix.env}.exs"
+import_config "#{Mix.env()}.exs"
 
 # See: https://github.com/dwyl/elixir-pre-commit/issues/38
 # config :pre_commit, commands: ["test", "coveralls"], verbose: true

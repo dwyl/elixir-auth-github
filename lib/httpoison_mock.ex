@@ -11,10 +11,15 @@ defmodule ElixirAuthGithub.HTTPoisonMock do
   `get/3` stubs the HTTPoison get! function when parameters match test vars.
   """
   def get!(url, headers \\ [], options \\ [])
-  def get!("https://api.github.com/user", [
-    {"User-Agent", "ElixirAuthGithub"},
-    {"Authorization", "token 123"}
-  ], _options) do
+
+  def get!(
+        "https://api.github.com/user",
+        [
+          {"User-Agent", "ElixirAuthGithub"},
+          {"Authorization", "token 123"}
+        ],
+        _options
+      ) do
     %{body: "{\"error\": \"test error\"}"}
   end
 
@@ -26,11 +31,22 @@ defmodule ElixirAuthGithub.HTTPoisonMock do
   `post/3` stubs the HTTPoison post! function when parameters match test vars.
   """
   def post!(url, body, headers \\ [], options \\ [])
-  def post!("https://github.com/login/oauth/access_token?client_id=TEST_ID&client_secret=TEST_SECRET&code=1234", _body, _headers, _options) do
+
+  def post!(
+        "https://github.com/login/oauth/access_token?client_id=TEST_ID&client_secret=TEST_SECRET&code=1234",
+        _body,
+        _headers,
+        _options
+      ) do
     %{body: "error=error"}
   end
 
-  def post!("https://github.com/login/oauth/access_token?client_id=TEST_ID&client_secret=TEST_SECRET&code=123", _body, _headers, _options) do
+  def post!(
+        "https://github.com/login/oauth/access_token?client_id=TEST_ID&client_secret=TEST_SECRET&code=123",
+        _body,
+        _headers,
+        _options
+      ) do
     %{body: "access_token=123"}
   end
 
