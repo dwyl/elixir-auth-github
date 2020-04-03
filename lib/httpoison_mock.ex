@@ -1,4 +1,4 @@
-defmodule ElixirAuthGithub.HTTPoison.Stub do
+defmodule ElixirAuthGithub.HTTPoisonMock do
   @moduledoc """
     This is a set up to mock (stub) our API requests to the GitHub API
     so that we can test all of our code in ElixirAuthGithub.
@@ -12,7 +12,7 @@ defmodule ElixirAuthGithub.HTTPoison.Stub do
   """
   def get!(url, headers \\ [], options \\ [])
   def get!("https://api.github.com/user", [
-    {"User-Agent", "elixir-practice"},
+    {"User-Agent", "ElixirAuthGithub"},
     {"Authorization", "token 123"}
   ], _options) do
     %{body: "{\"error\": \"test error\"}"}

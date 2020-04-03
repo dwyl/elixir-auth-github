@@ -8,7 +8,15 @@ defmodule ElixirAuthGithub do
 
   @github_url "https://github.com/login/oauth/"
   @github_auth_url @github_url <> "access_token?"
-  @httpoison Application.get_env(:elixir_auth_github, :httpoison) || HTTPoison
+
+  @doc """
+  `inject_poison/0` injects a TestDouble of HTTPoison in Test
+  so that we don't have duplicate mock in consuming apps.
+  see: https://github.com/dwyl/elixir-auth-google/issues/35
+  """
+  def inject_poison() do
+    Mix.env() == :test && ElixirAuthGithub.HTTPoisonMock || HTTPoison
+  end
 
   @doc """
   `login_url/0` returns a `String` URL to be used as the initial OAuth redirect.
@@ -51,7 +59,7 @@ defmodule ElixirAuthGithub do
       "client_secret" => System.get_env("GITHUB_CLIENT_SECRET"),
       "code" => code}
     |> URI.encode_query
-    |> (&(@httpoison.post!(@github_auth_url <> &1, ""))).()
+    |> (&(inject_poison().post!(@github_auth_url <> &1, ""))).()
     |> Map.get(:body)
     |> URI.decode_query
     |> check_authenticated
@@ -66,8 +74,9 @@ defmodule ElixirAuthGithub do
 
 
   defp get_user_details(access_token) do
-    @httpoison.get!("https://api.github.com/user", [
-      {"User-Agent", "elixir-practice"},
+    inject_poison().get!("https://api.github.com/user", [
+      # https://developer.github.com/v3/#user-agent-required
+      {"User-Agent", "ElixirAuthGithub"},
       {"Authorization", "token #{access_token}"}
     ])
     |> Map.get(:body)
