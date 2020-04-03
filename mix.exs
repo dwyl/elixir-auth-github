@@ -4,7 +4,7 @@ defmodule ElixirAuthGithub.Mixfile do
   def project do
     [
       app: :elixir_auth_github,
-      version: "1.1.0",
+      version: "1.1.1",
       elixir: "~> 1.9",
       test_coverage: [tool: ExCoveralls],
       preferred_cli_env: [coveralls: :test, "coveralls.detail": :test,
@@ -42,7 +42,7 @@ defmodule ElixirAuthGithub.Mixfile do
 
   defp package() do
     [
-      files: ["lib/elixir_auth_github.ex", "mix.exs", "README.md", "LICENSE*"],
+      files: ~w(lib LICENSE mix.exs README.md .formatter.exs),
       links: %{"GitHub" => "https://github.com/dwyl/elixir-auth-github"},
       licenses: ["GNU GPL v2.0"],
       maintainers: ["dwyl & friends!"]
