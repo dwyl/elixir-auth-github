@@ -289,10 +289,14 @@ end
 To:
 ```elixir
 def index(conn, _params) do
-  oauth_github_url = ElixirAuthGithub.login_url_with_scope(["user:email"])
+  oauth_github_url = ElixirAuthGithub.login_url(%{scopes: ["user:email"]})
   render(conn, "index.html", [oauth_github_url: oauth_github_url])
 end
 ```
+
+Example:
+[`lib/app_web/controllers/page_controller.ex#L4-L7`](https://github.com/dwyl/elixir-auth-github-demo/blob/5e564729ec839379697761d9b72cddf413f8eb0e/lib/app_web/controllers/page_controller.ex#L4-L7)
+
 
 ### 5.1 Update the `page/index.html.eex` Template
 
@@ -359,6 +363,23 @@ Success:
 <br />
 
 
+## _Testing_
+
+@dwyl we feel that testing is 1/3 of the "deliverable"
+(_with the other two thirds being docs and business logic_)
+so we pay close attention to "testability".
+
+With that in mind we have exported a _transparent_
+["TestDouble"](https://martinfowler.com/bliki/TestDouble.html)
+which intercepts HTTP requests when the `MIX_ENV` is `"test"`.
+
+To see the responses returned by the TestDouble,
+see:
+[`lib/httpoison_mock.ex`](https://github.com/dwyl/elixir-auth-github/blob/master/lib/httpoison_mock.ex)
+
+And to see how the tests assert these responses,
+see:
+[`test/elixir_auth_github_test.exs`](https://github.com/dwyl/elixir-auth-github/blob/master/test/elixir_auth_github_test.exs)
 
 
 <br /> <br />
