@@ -359,6 +359,23 @@ Success:
 <br />
 
 
+## _Testing_
+
+@dwyl we feel that testing is 1/3 of the "deliverable"
+(_with the other two thirds being docs and business logic_)
+so we pay close attention to "testability".
+
+With that in mind we have exported a _transparent_
+["TestDouble"](https://martinfowler.com/bliki/TestDouble.html)
+which intercepts HTTP requests when the `MIX_ENV` is `"test"`.
+
+To see the responses returned by the TestDouble,
+see:
+[`lib/httpoison_mock.ex`](https://github.com/dwyl/elixir-auth-github/blob/master/lib/httpoison_mock.ex)
+
+And to see how the tests assert these responses,
+see:
+[`test/elixir_auth_github_test.exs`](https://github.com/dwyl/elixir-auth-github/blob/master/test/elixir_auth_github_test.exs)
 
 
 <br /> <br />
