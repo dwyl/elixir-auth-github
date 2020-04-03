@@ -64,14 +64,11 @@ defmodule ElixirAuthGithub do
 
     inject_poison().post!(@github_auth_url <> query, "")
     |> Map.get(:body)
-    |> IO.inspect(label: ":body 67")
     |> URI.decode_query()
     |> check_authenticated
   end
 
   defp check_authenticated(%{"access_token" => access_token}) do
-    IO.inspect(access_token, label: "access_token check_authenticated/1:73")
-
     access_token
     |> get_user_details
   end
@@ -79,15 +76,12 @@ defmodule ElixirAuthGithub do
   defp check_authenticated(error), do: {:error, error}
 
   defp get_user_details(access_token) do
-    IO.inspect(access_token, label: "access_token get_user_details/1:79")
-
     inject_poison().get!("https://api.github.com/user", [
       #  https://developer.github.com/v3/#user-agent-required
       {"User-Agent", "ElixirAuthGithub"},
       {"Authorization", "token #{access_token}"}
     ])
     |> Map.get(:body)
-    |> IO.inspect(label: ":body 87")
     |> Poison.decode!()
     |> set_user_details(access_token)
   end
@@ -95,11 +89,10 @@ defmodule ElixirAuthGithub do
   defp set_user_details(%{"login" => _name} = user, access_token) do
     user = Map.put(user, "access_token", access_token)
     # transform map with keys as strings into keys as atoms!
+    # https://stackoverflow.com/questions/31990134
     atom_key_map = for {key, val} <- user, into: %{}, do: {String.to_atom(key), val}
     {:ok, atom_key_map}
   end
-
-  # https://stackoverflow.com/questions/31990134
 
   defp set_user_details(error, _token), do: {:error, error}
 end
