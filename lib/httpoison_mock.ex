@@ -51,6 +51,11 @@ defmodule ElixirAuthGithub.HTTPoisonMock do
   end
 
   def post!(_url, _body, _headers, _options) do
-    %{body: "access_token=12345"}
+    %{
+      body: "access_token=12345",
+      name: "Alex McAwesome",
+      email: "alex@gmail.com",
+      avatar_url: "https://avatars3.githubusercontent.com/u/10835816"
+    }
   end
 end
