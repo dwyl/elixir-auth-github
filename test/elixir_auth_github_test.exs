@@ -67,6 +67,6 @@ defmodule ElixirAuthGithubTest do
     setup_test_environment_variables()
 
     assert ElixirAuthGithub.github_auth("123") ==
-             {:error, %{"error" => "error"}}
+             {:error, %{"error" => "test error"}}
   end
 end
