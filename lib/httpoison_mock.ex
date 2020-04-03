@@ -10,13 +10,13 @@ defmodule ElixirAuthGithub.HTTPoisonMock do
   @doc """
   `get/3` stubs the HTTPoison get! function when parameters match test vars.
   """
-  @valid_body Poison.encode!(%{
-                access_token: "12345",
-                login: "test_user",
-                name: "Testy McTestface",
-                email: "test@gmail.com",
-                avatar_url: "https://avatars3.githubusercontent.com/u/10835816"
-              })
+  @valid_body %{
+    access_token: "12345",
+    login: "test_user",
+    name: "Testy McTestface",
+    email: "test@gmail.com",
+    avatar_url: "https://avatars3.githubusercontent.com/u/10835816"
+  }
 
   def get!(url, headers \\ [], options \\ [])
 
@@ -32,7 +32,7 @@ defmodule ElixirAuthGithub.HTTPoisonMock do
   end
 
   def get!(_url, _headers, _options) do
-    %{body: @valid_body}
+    %{body: Poison.encode!(@valid_body)}
   end
 
   @doc """
@@ -58,7 +58,8 @@ defmodule ElixirAuthGithub.HTTPoisonMock do
     %{body: "access_token=123"}
   end
 
+  # for some reason GitHub's Post returns a URI encoded string
   def post!(_url, _body, _headers, _options) do
-    %{body: @valid_body}
+    %{body: URI.encode_query(@valid_body)}
   end
 end

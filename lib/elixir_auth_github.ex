@@ -65,12 +65,13 @@ defmodule ElixirAuthGithub do
     inject_poison().post!(@github_auth_url <> query, "")
     |> Map.get(:body)
     |> IO.inspect(label: ":body 67")
-    |> Poison.decode!()
+    |> URI.decode_query()
     |> check_authenticated
   end
 
   defp check_authenticated(%{"access_token" => access_token}) do
     IO.inspect(access_token, label: "access_token check_authenticated/1:73")
+
     access_token
     |> get_user_details
   end
@@ -79,6 +80,7 @@ defmodule ElixirAuthGithub do
 
   defp get_user_details(access_token) do
     IO.inspect(access_token, label: "access_token get_user_details/1:79")
+
     inject_poison().get!("https://api.github.com/user", [
       #  https://developer.github.com/v3/#user-agent-required
       {"User-Agent", "ElixirAuthGithub"},
