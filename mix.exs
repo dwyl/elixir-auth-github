@@ -4,8 +4,8 @@ defmodule ElixirAuthGithub.Mixfile do
   def project do
     [
       app: :elixir_auth_github,
-      version: "1.2.0",
-      elixir: "~> 1.9",
+      version: "1.3.0",
+      elixir: "~> 1.10",
       test_coverage: [tool: ExCoveralls],
       preferred_cli_env: [
         coveralls: :test,
@@ -32,11 +32,14 @@ defmodule ElixirAuthGithub.Mixfile do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:httpoison, "~> 1.6.2"},
+      {:httpoison, "~> 1.7.0"},
       {:poison, "~> 4.0.1"},
-      {:excoveralls, "~> 0.12.2", only: :test},
+
+      # tracking test coverage
+      {:excoveralls, "~> 0.13.0", only: [:test, :dev]},
+
+      # documentation
       {:ex_doc, "~> 0.21.3", only: :dev}
-      # {:pre_commit, "~> 0.1.3", only: :dev}
     ]
   end
 
