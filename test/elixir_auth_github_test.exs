@@ -67,4 +67,10 @@ defmodule ElixirAuthGithubTest do
     res = ElixirAuthGithub.github_auth("123")
     assert res == {:error, %{"error" => "test error"}}
   end
+
+  test "fetch primary email for user" do
+    setup_test_environment_variables()
+    {:ok, res} = ElixirAuthGithub.github_auth("42")
+    assert res.email == "private_email@gmail.com"
+  end
 end
