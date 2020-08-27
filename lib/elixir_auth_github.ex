@@ -86,8 +86,30 @@ defmodule ElixirAuthGithub do
     |> set_user_details(access_token)
   end
 
-  defp set_user_details(%{"login" => _name} = user, access_token) do
-    user = Map.put(user, "access_token", access_token)
+  defp get_primary_email(access_token) do
+    inject_poison().get!("https://api.github.com/user/emails", [
+      #  https://developer.github.com/v3/#user-agent-required
+      {"User-Agent", "ElixirAuthGithub"},
+      {"Authorization", "token #{access_token}"}
+    ])
+    |> Map.get(:body)
+    |> Poison.decode!()
+    |> Enum.find_value(&if &1["primary"], do: &1["email"])
+  end
+
+  defp set_user_email(user, nil, access_token) do
+    email = get_primary_email(access_token)
+    Map.put(user, "email", email)
+  end
+
+  defp set_user_email(user, email, _access_token), do: Map.put(user, "email", email)
+
+  defp set_user_details(%{"login" => _name, "email" => email} = user, access_token) do
+    user =
+      user
+      |> Map.put("access_token", access_token)
+      |> set_user_email(email, access_token)
+
     # transform map with keys as strings into keys as atoms!
     # https://stackoverflow.com/questions/31990134
     atom_key_map = for {key, val} <- user, into: %{}, do: {String.to_atom(key), val}

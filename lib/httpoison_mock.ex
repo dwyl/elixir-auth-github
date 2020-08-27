@@ -18,6 +18,29 @@ defmodule ElixirAuthGithub.HTTPoisonMock do
     avatar_url: "https://avatars3.githubusercontent.com/u/10835816"
   }
 
+  @body_email_nil %{
+    access_token: "12345",
+    login: "test_user",
+    name: "Testy McTestface",
+    email: nil,
+    avatar_url: "https://avatars3.githubusercontent.com/u/10835816"
+  }
+
+  @emails [
+    %{
+      "email" => "octocat@github.com",
+      "verified" => true,
+      "primary" => false,
+      "visibility" => "private"
+    },
+    %{
+      "email" => "private_email@gmail.com",
+      "verified" => true,
+      "primary" => true,
+      "visibility" => "private"
+    }
+  ]
+
   def get!(url, headers \\ [], options \\ [])
 
   def get!(
@@ -29,6 +52,29 @@ defmodule ElixirAuthGithub.HTTPoisonMock do
         _options
       ) do
     %{body: "{\"error\": \"test error\"}"}
+  end
+
+  def get!(
+        "https://api.github.com/user",
+        [
+          {"User-Agent", "ElixirAuthGithub"},
+          {"Authorization", "token 42"}
+        ],
+        _options
+      ) do
+    %{body: Poison.encode!(@body_email_nil)}
+  end
+
+  # user emails
+  def get!(
+        "https://api.github.com/user/emails",
+        [
+          {"User-Agent", "ElixirAuthGithub"},
+          {"Authorization", "token 42"}
+        ],
+        _options
+      ) do
+    %{body: Poison.encode!(@emails)}
   end
 
   def get!(_url, _headers, _options) do
@@ -56,6 +102,15 @@ defmodule ElixirAuthGithub.HTTPoisonMock do
         _options
       ) do
     %{body: "access_token=123"}
+  end
+
+  def post!(
+        "https://github.com/login/oauth/access_token?client_id=TEST_ID&client_secret=TEST_SECRET&code=42",
+        _body,
+        _headers,
+        _options
+      ) do
+    %{body: "access_token=42"}
   end
 
   # for some reason GitHub's Post returns a URI encoded string

@@ -4,7 +4,7 @@ defmodule ElixirAuthGithub.Mixfile do
   def project do
     [
       app: :elixir_auth_github,
-      version: "1.3.0",
+      version: "1.4.0",
       elixir: "~> 1.10",
       test_coverage: [tool: ExCoveralls],
       preferred_cli_env: [
