@@ -15,7 +15,8 @@ defmodule ElixirAuthGithub.HTTPoisonMock do
     login: "test_user",
     name: "Testy McTestface",
     email: "test@gmail.com",
-    avatar_url: "https://avatars3.githubusercontent.com/u/10835816"
+    avatar_url: "https://avatars3.githubusercontent.com/u/10835816",
+    id: "19"
   }
 
   @body_email_nil %{
@@ -23,7 +24,8 @@ defmodule ElixirAuthGithub.HTTPoisonMock do
     login: "test_user",
     name: "Testy McTestface",
     email: nil,
-    avatar_url: "https://avatars3.githubusercontent.com/u/10835816"
+    avatar_url: "https://avatars3.githubusercontent.com/u/10835816",
+    id: "28"
   }
 
   @emails [
