@@ -4,7 +4,7 @@ defmodule ElixirAuthGithub.Mixfile do
   def project do
     [
       app: :elixir_auth_github,
-      version: "1.4.0",
+      version: "1.4.1",
       elixir: "~> 1.10",
       test_coverage: [tool: ExCoveralls],
       preferred_cli_env: [
@@ -39,7 +39,7 @@ defmodule ElixirAuthGithub.Mixfile do
       {:excoveralls, "~> 0.13.0", only: [:test, :dev]},
 
       # documentation
-      {:ex_doc, "~> 0.21.3", only: :dev}
+      {:ex_doc, "~> 0.22.6", only: :dev}
     ]
   end
 
