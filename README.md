@@ -73,7 +73,7 @@ Add a line for **`:elixir_auth_github`** in the **`deps`** list:
 ```elixir
 def deps do
   [
-    {:elixir_auth_github, "~> 1.4"}
+    {:elixir_auth_github, "~> 1.5.0"}
   ]
 end
 ```
@@ -176,7 +176,7 @@ You are free to organise your code however you prefer. 👍
 ### 3.2 Create `welcome` template 📝
 
 Create a new file with the following path:
-`lib/app_web/templates/page/welcome.html.eex`
+`lib/app_web/templates/page/welcome.html.heex`
 
 And type (_or paste_) the following code in it:
 ```html

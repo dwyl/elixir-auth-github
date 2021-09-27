@@ -4,8 +4,8 @@ defmodule ElixirAuthGithub.Mixfile do
   def project do
     [
       app: :elixir_auth_github,
-      version: "1.4.1",
-      elixir: "~> 1.10",
+      version: "1.5.0",
+      elixir: "~> 1.12",
       test_coverage: [tool: ExCoveralls],
       preferred_cli_env: [
         coveralls: :test,
@@ -32,19 +32,19 @@ defmodule ElixirAuthGithub.Mixfile do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:httpoison, "~> 1.7.0"},
-      {:poison, "~> 4.0.1"},
+      {:httpoison, "~> 1.8.0"},
+      {:poison, "~> 5.0.0"},
 
       # tracking test coverage
-      {:excoveralls, "~> 0.13.0", only: [:test, :dev]},
+      {:excoveralls, "~> 0.14.2", only: [:test, :dev]},
 
       # documentation
-      {:ex_doc, "~> 0.22.6", only: :dev}
+      {:ex_doc, "~> 0.25.2", only: :dev}
     ]
   end
 
   defp description() do
-    "The simple way to add GitHub OAuth to your Elixir/Phoenix Apps!"
+    "The simplest way to add GitHub OAuth to your Elixir/Phoenix Apps!"
   end
 
   defp package() do
@@ -52,7 +52,7 @@ defmodule ElixirAuthGithub.Mixfile do
       files: ~w(lib LICENSE mix.exs README.md .formatter.exs),
       links: %{"GitHub" => "https://github.com/dwyl/elixir-auth-github"},
       licenses: ["GNU GPL v2.0"],
-      maintainers: ["dwyl & friends!"]
+      maintainers: ["dwyl & friends! (contributions always welcome)"]
     ]
   end
 end
