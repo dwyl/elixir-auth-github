@@ -168,10 +168,10 @@ based on the `code` sent by GitHub's callback request.
 + Renders a `:welcome` view displaying some profile data
 to confirm that login with GitHub was successful.
 
-> **Note**: we are placing the `welcome.html.eex` template
+> **Note**: we are placing the `welcome.html.heex` template
 in the `template/page` directory to save having to create
 any more directories and view files.
-You are free to organise your code however you prefer. 👍
+You are free to organize your code however you prefer. 👍
 
 ### 3.2 Create `welcome` template 📝
 
@@ -182,7 +182,7 @@ And type (_or paste_) the following code in it:
 ```html
 <section class="phx-hero">
   <h1> Welcome <%= @profile.name %>!
-  <img width="32px" src="<%= @profile.avatar_url %>" />
+  <img width="32px" src="{@profile.avatar_url}" />
   </h1>
   <p> You are <strong>signed in</strong>
     with your <strong>GitHub Account</strong> <br />
