@@ -4,7 +4,7 @@ defmodule ElixirAuthGithub.Mixfile do
   def project do
     [
       app: :elixir_auth_github,
-      version: "1.5.0",
+      version: "1.6.0",
       elixir: "~> 1.12",
       test_coverage: [tool: ExCoveralls],
       preferred_cli_env: [
@@ -33,7 +33,7 @@ defmodule ElixirAuthGithub.Mixfile do
   defp deps do
     [
       {:httpoison, "~> 1.8.0"},
-      {:poison, "~> 5.0.0"},
+      {:jason, "~> 1.2"},
 
       # tracking test coverage
       {:excoveralls, "~> 0.14.2", only: [:test, :dev]},

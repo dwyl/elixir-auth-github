@@ -82,7 +82,7 @@ defmodule ElixirAuthGithub do
       {"Authorization", "token #{access_token}"}
     ])
     |> Map.get(:body)
-    |> Poison.decode!()
+    |> Jason.decode!()
     |> set_user_details(access_token)
   end
 
@@ -93,7 +93,7 @@ defmodule ElixirAuthGithub do
       {"Authorization", "token #{access_token}"}
     ])
     |> Map.get(:body)
-    |> Poison.decode!()
+    |> Jason.decode!()
     |> Enum.find_value(&if &1["primary"], do: &1["email"])
   end
 
