@@ -64,7 +64,7 @@ defmodule ElixirAuthGithub.HTTPoisonMock do
         ],
         _options
       ) do
-    %{body: Poison.encode!(@body_email_nil)}
+    %{body: Jason.encode!(@body_email_nil)}
   end
 
   # user emails
@@ -76,11 +76,11 @@ defmodule ElixirAuthGithub.HTTPoisonMock do
         ],
         _options
       ) do
-    %{body: Poison.encode!(@emails)}
+    %{body: Jason.encode!(@emails)}
   end
 
   def get!(_url, _headers, _options) do
-    %{body: Poison.encode!(@valid_body)}
+    %{body: Jason.encode!(@valid_body)}
   end
 
   @doc """

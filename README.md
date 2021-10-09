@@ -73,7 +73,7 @@ Add a line for **`:elixir_auth_github`** in the **`deps`** list:
 ```elixir
 def deps do
   [
-    {:elixir_auth_github, "~> 1.4"}
+    {:elixir_auth_github, "~> 1.6.0"}
   ]
 end
 ```
@@ -168,21 +168,21 @@ based on the `code` sent by GitHub's callback request.
 + Renders a `:welcome` view displaying some profile data
 to confirm that login with GitHub was successful.
 
-> **Note**: we are placing the `welcome.html.eex` template
+> **Note**: we are placing the `welcome.html.heex` template
 in the `template/page` directory to save having to create
 any more directories and view files.
-You are free to organise your code however you prefer. 👍
+You are free to organize your code however you prefer. 👍
 
 ### 3.2 Create `welcome` template 📝
 
 Create a new file with the following path:
-`lib/app_web/templates/page/welcome.html.eex`
+`lib/app_web/templates/page/welcome.html.heex`
 
 And type (_or paste_) the following code in it:
 ```html
 <section class="phx-hero">
   <h1> Welcome <%= @profile.name %>!
-  <img width="32px" src="<%= @profile.avatar_url %>" />
+  <img width="32px" src="{@profile.avatar_url}" />
   </h1>
   <p> You are <strong>signed in</strong>
     with your <strong>GitHub Account</strong> <br />
