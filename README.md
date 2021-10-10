@@ -142,7 +142,7 @@ we need to create a new `controller`.
 Create a new file called
 `lib/app_web/controllers/github_auth_controller.ex`
 
-Add the folowing code to the file:
+Add the following code to the file:
 
 ```elixir
 defmodule AppWeb.GithubAuthController do
@@ -187,7 +187,7 @@ And type (_or paste_) the following code in it:
   <p> You are <strong>signed in</strong>
     with your <strong>GitHub Account</strong> <br />
     <strong style="color:teal;"><%= @profile.email %></strong>
-  <p/>
+  </p>
 </section>
 ```
 
