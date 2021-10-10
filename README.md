@@ -14,7 +14,7 @@ to your Elixir/Phoenix Apps.
 </div>
 
 
-# _Why_? 🤷d
+# _Why_? 🤷
 
 We needed a **_much_ simpler**
 and **_extensively_ documented** way
