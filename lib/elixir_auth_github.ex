@@ -10,8 +10,7 @@ defmodule ElixirAuthGithub do
   @github_auth_url @github_url <> "access_token?"
 
   @httpoison (Application.compile_env(:elixir_auth_github, :httpoison_mock) &&
-  ElixirAuthGithub.HTTPoisonMock) || HTTPoison
-
+                ElixirAuthGithub.HTTPoisonMock) || HTTPoison
 
   @doc """
   `inject_poison/0` injects a TestDouble of HTTPoison in Test
@@ -31,7 +30,8 @@ defmodule ElixirAuthGithub do
   `client_secret/0` returns a `String` of the `GITHUB_CLIENT_SECRET`
   """
   def client_secret do
-    System.get_env("GITHUB_CLIENT_SECRET") || Application.get_env(:elixir_auth_github, :client_secret)
+    System.get_env("GITHUB_CLIENT_SECRET") ||
+      Application.get_env(:elixir_auth_github, :client_secret)
   end
 
   @doc """
