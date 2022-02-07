@@ -4,10 +4,11 @@ defmodule ElixirAuthGithub.Mixfile do
   def project do
     [
       app: :elixir_auth_github,
-      version: "1.6.0",
+      version: "1.6.1",
       elixir: "~> 1.12",
       test_coverage: [tool: ExCoveralls],
       preferred_cli_env: [
+        c: :test,
         coveralls: :test,
         "coveralls.detail": :test,
         "coveralls.post": :test,
@@ -18,7 +19,14 @@ defmodule ElixirAuthGithub.Mixfile do
       name: "ElixirAuthGithub",
       source_url: "https://www.github.com/dwyl/elixir-auth-github",
       description: description(),
-      package: package()
+      package: package(),
+      aliases: aliases()
+    ]
+  end
+
+  defp aliases do
+    [
+      c: ["coveralls.html"]
     ]
   end
 
@@ -36,10 +44,10 @@ defmodule ElixirAuthGithub.Mixfile do
       {:jason, "~> 1.2"},
 
       # tracking test coverage
-      {:excoveralls, "~> 0.14.2", only: [:test, :dev]},
+      {:excoveralls, "~> 0.14.4", only: [:test, :dev]},
 
       # documentation
-      {:ex_doc, "~> 0.25.2", only: :dev}
+      {:ex_doc, "~> 0.28.0", only: :dev}
     ]
   end
 
