@@ -9,13 +9,29 @@ defmodule ElixirAuthGithub do
   @github_url "https://github.com/login/oauth/"
   @github_auth_url @github_url <> "access_token?"
 
+  @httpoison (Application.compile_env(:elixir_auth_github, :httpoison_mock) &&
+  ElixirAuthGithub.HTTPoisonMock) || HTTPoison
+
+
   @doc """
   `inject_poison/0` injects a TestDouble of HTTPoison in Test
   so that we don't have duplicate mock in consuming apps.
   see: https://github.com/dwyl/elixir-auth-google/issues/35
   """
-  def inject_poison() do
-    (Mix.env() == :test && ElixirAuthGithub.HTTPoisonMock) || HTTPoison
+  def inject_poison, do: @httpoison
+
+  @doc """
+  `client_id/0` returns a `String` of the `GITHUB_CLIENT_ID`
+  """
+  def client_id do
+    System.get_env("GITHUB_CLIENT_ID") || Application.get_env(:elixir_auth_github, :client_id)
+  end
+
+  @doc """
+  `client_secret/0` returns a `String` of the `GITHUB_CLIENT_SECRET`
+  """
+  def client_secret do
+    System.get_env("GITHUB_CLIENT_SECRET") || Application.get_env(:elixir_auth_github, :client_secret)
   end
 
   @doc """
@@ -25,8 +41,7 @@ defmodule ElixirAuthGithub do
   See step 2 of setup instructions.
   """
   def login_url do
-    client_id = System.get_env("GITHUB_CLIENT_ID")
-    @github_url <> "authorize?client_id=#{client_id}"
+    @github_url <> "authorize?client_id=#{client_id()}"
   end
 
   @doc """
@@ -57,8 +72,8 @@ defmodule ElixirAuthGithub do
   def github_auth(code) do
     query =
       URI.encode_query(%{
-        "client_id" => System.get_env("GITHUB_CLIENT_ID"),
-        "client_secret" => System.get_env("GITHUB_CLIENT_SECRET"),
+        "client_id" => client_id(),
+        "client_secret" => client_secret(),
         "code" => code
       })
 
