@@ -30,8 +30,7 @@ defmodule ElixirAuthGithub do
   `client_secret/0` returns a `String` of the `GITHUB_CLIENT_SECRET`
   """
   def client_secret do
-    System.get_env("GITHUB_CLIENT_SECRET") ||
-      Application.get_env(:elixir_auth_github, :client_secret)
+    System.get_env("GITHUB_CLIENT_SECRET") || Application.get_env(:elixir_auth_github, :client_secret)
   end
 
   @doc """
