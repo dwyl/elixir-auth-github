@@ -1,10 +1,7 @@
 defmodule ElixirAuthGithubTest do
   use ExUnit.Case
   doctest ElixirAuthGithub
-
-  defp client_id do
-    System.get_env("GITHUB_CLIENT_ID")
-  end
+  import ElixirAuthGithub
 
   defp setup_test_environment_variables do
     System.put_env([{"GITHUB_CLIENT_ID", "TEST_ID"}, {"GITHUB_CLIENT_SECRET", "TEST_SECRET"}])
@@ -58,7 +55,6 @@ defmodule ElixirAuthGithubTest do
 
   test "github_auth returns an error with a bad code" do
     setup_test_environment_variables()
-
     assert ElixirAuthGithub.github_auth("1234") ==
              {:error, %{"error" => "error"}}
   end

@@ -73,7 +73,7 @@ Add a line for **`:elixir_auth_github`** in the **`deps`** list:
 ```elixir
 def deps do
   [
-    {:elixir_auth_github, "~> 1.6.0"}
+    {:elixir_auth_github, "~> 1.6.1"}
   ]
 end
 ```
@@ -381,6 +381,15 @@ And to see how the tests assert these responses,
 see:
 [`test/elixir_auth_github_test.exs`](https://github.com/dwyl/elixir-auth-github/blob/master/test/elixir_auth_github_test.exs)
 
+
+To use the tests add the following config to your `test.exs` file:
+
+```
+config :elixir_auth_github,
+  client_id: "d6fca75c63daa014c187",
+  client_secret: "8eeb143935d1a505692aaef856db9b4da8245f3c",
+  httpoison_mock: true
+```
 
 <br /> <br />
 
