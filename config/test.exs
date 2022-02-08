@@ -1,4 +1,4 @@
-use Mix.Config
+import Config
 
 config :elixir_auth_github,
   client_id: "d6fca75c63daa014c187",
