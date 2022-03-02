@@ -9,7 +9,9 @@ to your Elixir/Phoenix Apps.
 [![codecov.io](https://img.shields.io/codecov/c/github/dwyl/elixir-auth-github/master.svg?style=flat-square)](http://codecov.io/github/dwyl/elixir-auth-github?branch=master)
 [![Hex.pm](https://img.shields.io/hexpm/v/elixir_auth_github?color=brightgreen&style=flat-square)](https://hex.pm/packages/elixir_auth_github)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat-square)](https://github.com/dwyl/elixir-auth-github/issues)
+[![Libraries.io dependency status](https://img.shields.io/librariesio/release/hex/elixir_auth_github?style=flat-square)](https://libraries.io/hex/elixir_auth_github)
 [![HitCount](http://hits.dwyl.com/dwyl/elixir-auth-github.svg)](http://hits.dwyl.com/dwyl/elixir-auth-github)
+
 
 </div>
 
