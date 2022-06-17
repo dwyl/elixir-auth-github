@@ -184,7 +184,7 @@ And type (_or paste_) the following code in it:
 ```html
 <section class="phx-hero">
   <h1> Welcome <%= @profile.name %>!
-  <img width="32px" src="{@profile.avatar_url}" />
+  <img width="32px" src={@profile.avatar_url} />
   </h1>
   <p> You are <strong>signed in</strong>
     with your <strong>GitHub Account</strong> <br />
@@ -308,8 +308,8 @@ and type (_or paste_) the following code:
 ```html
 <section class="phx-hero">
   <h1>Welcome to Awesome App!</h1>
-  <p>To get started, login to your GitHub Account: <p>
-  <a href="<%= @oauth_github_url %>">
+  <p>To get started, login to your GitHub Account: </p>
+  <a href={@oauth_github_url} >
     <img src="https://i.imgur.com/qwoHBIZ.png" alt="Sign in with GitHub" />
   </a>
 </section>
