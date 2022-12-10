@@ -59,7 +59,7 @@ defmodule ElixirAuthGithub.Mixfile do
     [
       files: ~w(lib LICENSE mix.exs README.md .formatter.exs config),
       links: %{"GitHub" => "https://github.com/dwyl/elixir-auth-github"},
-      licenses: ["GNU GPL v2.0"],
+      licenses: ["GPL-2.0-or-later"],
       maintainers: ["dwyl & friends! (contributions always welcome)"]
     ]
   end
