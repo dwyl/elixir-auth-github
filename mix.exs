@@ -44,7 +44,7 @@ defmodule ElixirAuthGithub.Mixfile do
       {:jason, "~> 1.2"},
 
       # tracking test coverage
-      {:excoveralls, "~> 0.14.4", only: [:test, :dev]},
+      {:excoveralls, "~> 0.15.3", only: [:test, :dev]},
 
       # documentation
       {:ex_doc, "~> 0.28.0", only: :dev}
