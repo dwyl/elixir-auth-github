@@ -49,8 +49,8 @@ defmodule ElixirAuthGithub do
   """
   def login_url(%{scopes: scopes, state: state}) do
     login_url() <>
-      "&scope=#{Enum.join(scopes, "%20")}" <>
-      "&state=#{state}"
+    "&scope=#{Enum.join(scopes, "%20")}" <>
+    "&state=#{state}"
   end
 
   def login_url(%{scopes: scopes}) do
@@ -82,9 +82,11 @@ defmodule ElixirAuthGithub do
     |> check_authenticated
   end
 
-  defp check_authenticated(%{"access_token" => access_token}) do
+  defp check_authenticated(%{"access_token" => access_token, "scope" => scope}) do
     access_token
     |> get_user_details
+    |> Map.put(:scope, scope)
+    |> then(&{:ok, &1})
   end
 
   defp check_authenticated(error), do: {:error, error}
@@ -126,8 +128,7 @@ defmodule ElixirAuthGithub do
 
     # transform map with keys as strings into keys as atoms!
     # https://stackoverflow.com/questions/31990134
-    atom_key_map = for {key, val} <- user, into: %{}, do: {String.to_atom(key), val}
-    {:ok, atom_key_map}
+    _atom_key_map = for {key, val} <- user, into: %{}, do: {String.to_atom(key), val}
   end
 
   defp set_user_details(error, _token), do: {:error, error}
