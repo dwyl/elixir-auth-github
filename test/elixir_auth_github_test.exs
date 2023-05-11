@@ -53,6 +53,13 @@ defmodule ElixirAuthGithubTest do
     assert res.id == "19"
   end
 
+  test "github_auth returns scope string" do
+    setup_test_environment_variables()
+    {:ok, res} = ElixirAuthGithub.github_auth("12345")
+    assert res.scope == "user"
+    assert res.id == "19"
+  end
+
   test "github_auth returns an error with a bad code" do
     setup_test_environment_variables()
     assert ElixirAuthGithub.github_auth("1234") ==
