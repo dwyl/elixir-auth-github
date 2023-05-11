@@ -85,11 +85,18 @@ defmodule ElixirAuthGithub do
   defp check_authenticated(%{"access_token" => access_token, "scope" => scope}) do
     access_token
     |> get_user_details
+    |> set_scope(scope)
+  end
+
+  defp check_authenticated(error), do: {:error, error}
+
+  defp set_scope({:ok, user_details}, scope) do
+    user_details
     |> Map.put(:scope, scope)
     |> then(&{:ok, &1})
   end
 
-  defp check_authenticated(error), do: {:error, error}
+  defp set_scope({:error, error}, _scope), do: {:error, error}
 
   defp get_user_details(access_token) do
     inject_poison().get!("https://api.github.com/user", [
@@ -128,7 +135,8 @@ defmodule ElixirAuthGithub do
 
     # transform map with keys as strings into keys as atoms!
     # https://stackoverflow.com/questions/31990134
-    _atom_key_map = for {key, val} <- user, into: %{}, do: {String.to_atom(key), val}
+    atom_key_map = for {key, val} <- user, into: %{}, do: {String.to_atom(key), val}
+    {:ok, atom_key_map}
   end
 
   defp set_user_details(error, _token), do: {:error, error}
