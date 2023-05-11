@@ -236,7 +236,8 @@ is the following format:
   id: 194400,
   following: 173,
   login: "nelsonic",
-  collaborators: 8
+  collaborators: 8,
+  scope: "repo,user:email"
 }
 ```
 
