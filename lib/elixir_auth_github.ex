@@ -82,12 +82,21 @@ defmodule ElixirAuthGithub do
     |> check_authenticated
   end
 
-  defp check_authenticated(%{"access_token" => access_token}) do
+  defp check_authenticated(%{"access_token" => access_token, "scope" => scope}) do
     access_token
     |> get_user_details
+    |> set_scope(scope)
   end
 
   defp check_authenticated(error), do: {:error, error}
+
+  defp set_scope({:ok, user_details}, scope) do
+    user_details
+    |> Map.put(:scope, scope)
+    |> then(&{:ok, &1})
+  end
+
+  defp set_scope({:error, error}, _scope), do: {:error, error}
 
   defp get_user_details(access_token) do
     inject_poison().get!("https://api.github.com/user", [

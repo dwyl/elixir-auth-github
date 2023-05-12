@@ -103,7 +103,7 @@ defmodule ElixirAuthGithub.HTTPoisonMock do
         _headers,
         _options
       ) do
-    %{body: "access_token=123"}
+    %{body: "access_token=123&scope=user"}
   end
 
   def post!(
@@ -112,11 +112,15 @@ defmodule ElixirAuthGithub.HTTPoisonMock do
         _headers,
         _options
       ) do
-    %{body: "access_token=42"}
+    %{body: "access_token=42&scope=user"}
   end
 
-  # for some reason GitHub's Post returns a URI encoded string
-  def post!(_url, _body, _headers, _options) do
-    %{body: URI.encode_query(@valid_body)}
+  def post!(
+        "https://github.com/login/oauth/access_token?client_id=TEST_ID&client_secret=TEST_SECRET&code=12345",
+        _body,
+        _headers,
+        _options
+      ) do
+    %{body: "access_token=12345&scope=user"}
   end
 end
