@@ -123,4 +123,8 @@ defmodule ElixirAuthGithub.HTTPoisonMock do
       ) do
     %{body: "access_token=12345&scope=user"}
   end
+
+  def post!(_url, _body, _headers, _options) do
+    %{body: "access_token=123456&scope=user"}
+  end
 end

@@ -59,6 +59,12 @@ defmodule ElixirAuthGithubTest do
     assert res.scope == "user"
   end
 
+  test "catch-all mock HTTP.post! returns scope string" do
+    setup_test_environment_variables()
+    {:ok, res} = ElixirAuthGithub.github_auth("123456")
+    assert res.scope == "user"
+  end
+
   test "github_auth returns an error with a bad code" do
     setup_test_environment_variables()
     assert ElixirAuthGithub.github_auth("1234") ==
