@@ -47,7 +47,7 @@ defmodule ElixirAuthGithub.Mixfile do
       {:excoveralls, "~> 0.18.0", only: [:test, :dev]},
 
       # documentation
-      {:ex_doc, "~> 0.32.1", only: :dev}
+      {:ex_doc, "~> 0.33.0", only: :dev}
     ]
   end
 
