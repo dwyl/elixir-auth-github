@@ -1,6 +1,6 @@
 <div align="center">
 
-# `elixir-auth-github`
+# `elixir-auth-github` 💧 🔒 :octocat:
 
 The _easiest_ way to add GitHub OAuth authentication
 to your Elixir/Phoenix Apps.
@@ -8,9 +8,12 @@ to your Elixir/Phoenix Apps.
 [![Build Status](https://img.shields.io/travis/com/dwyl/elixir-auth-github/master?color=bright-green&style=flat-square)](https://travis-ci.org/dwyl/elixir-auth-github)
 [![codecov.io](https://img.shields.io/codecov/c/github/dwyl/elixir-auth-github/master.svg?style=flat-square)](http://codecov.io/github/dwyl/elixir-auth-github?branch=master)
 [![Hex.pm](https://img.shields.io/hexpm/v/elixir_auth_github?color=brightgreen&style=flat-square)](https://hex.pm/packages/elixir_auth_github)
+[![docs](https://img.shields.io/badge/docs-maintained-brightgreen?style=flat-square)](https://hexdocs.pm/elixir_auth_github/ElixirAuthGithub.html)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat-square)](https://github.com/dwyl/elixir-auth-github/issues)
-[![Libraries.io dependency status](https://img.shields.io/librariesio/release/hex/elixir_auth_github?style=flat-square)](https://libraries.io/hex/elixir_auth_github)
 [![HitCount](http://hits.dwyl.com/dwyl/elixir-auth-github.svg)](http://hits.dwyl.com/dwyl/elixir-auth-github)
+<!-- Sadly libraries.io is giving 404's on images ... 
+[![Libraries.io dependency status](https://img.shields.io/librariesio/release/hex/elixir_auth_github?style=flat-square)](https://libraries.io/hex/elixir_auth_github)
+-->
 
 </div>
 
