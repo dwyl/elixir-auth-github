@@ -21,6 +21,7 @@ defmodule ElixirAuthGithub do
 
   @doc """
   `client_id/0` returns a `String` of the `GITHUB_CLIENT_ID`
+  e.g: `"d6fca75c63daa014c187"`
   """
   def client_id do
     System.get_env("GITHUB_CLIENT_ID") || Application.get_env(:elixir_auth_github, :client_id)
@@ -28,6 +29,7 @@ defmodule ElixirAuthGithub do
 
   @doc """
   `client_secret/0` returns a `String` of the `GITHUB_CLIENT_SECRET`
+  e.g: `"8eeb143935d1a505692aaef856db9b"`
   """
   def client_secret do
     System.get_env("GITHUB_CLIENT_SECRET") || Application.get_env(:elixir_auth_github, :client_secret)
@@ -64,7 +66,7 @@ defmodule ElixirAuthGithub do
   @doc """
   When called with a valid OAuth callback code, `github_auth/1` makes a number of
   authentication requests to GitHub and returns a tuple with `:ok` and a map with
-  GitHub user details and an access_token.
+  GitHub user details and an `access_token`.
 
   Bad authentication codes will return a tuple with `:error` and an error map.
   """
