@@ -40,7 +40,7 @@ defmodule ElixirAuthGithub.Mixfile do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:httpoison, "~> 2.3.0"},
+      {:httpoison, "~> 3.0.0"},
       {:jason, "~> 1.2"},
 
       # tracking test coverage
